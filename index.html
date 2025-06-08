@@ -1,12 +1,10 @@
-
- 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tech Loading Screen with Ads</title>
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4460528651611290"
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4460528651611290"
      crossorigin="anonymous"></script>
     <style>
         /* CSS is now embedded in the HTML file */
@@ -201,17 +199,12 @@
                 <h3>Support & Monetization</h3>
                 <p>Displaying ads helps us keep this content free. Thank you for your support!</p>
                 
-                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4460528651611290"
-     crossorigin="anonymous"></script>
-<ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-4460528651611290"
-     data-ad-slot="8591281741"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
+                <ins class="adsbygoogle"
+                     style="display:block; text-align:center;"
+                     data-ad-layout="in-article"
+                     data-ad-format="fluid"
+                     data-ad-client="ca-pub-4460528651611290"
+                     data-ad-slot="8591281741"></ins>
                 <p style="font-size: 0.8rem; text-align: center; color: #7f8c8d;">Advertisement</p>
             </aside>
             
@@ -224,7 +217,6 @@
     </div>
 
     <script>
-        // JavaScript is now embedded in the HTML file
         const progressContainer = document.querySelector('.progress-container');
         const progressCircle = document.querySelector('.progress-circle');
         const progressText = document.querySelector('.progress-text');
@@ -232,11 +224,9 @@
         const body = document.querySelector('body');
 
         let progress = 0;
-        // The interval is set to a short duration (30ms) for a quick load effect
         const interval = setInterval(() => {
             progress++;
             progressText.textContent = `${progress}%`;
-            // The multiplication by 3.6 converts percentage (0-100) to degrees (0-360)
             progressCircle.style.background = `conic-gradient(#00aaff ${progress * 3.6}deg, #1a1a1a 0deg)`;
 
             if (progress >= 100) {
@@ -254,6 +244,8 @@
                     // Use a short timeout to allow the display property to apply before starting the fade-in
                     setTimeout(() => {
                         contentContainer.style.opacity = '1';
+                        // IMPORTANT: Push the AdSense ad *after* the content is visible
+                        (adsbygoogle = window.adsbygoogle || []).push({});
                     }, 50);
 
                 }, 500); // This timeout should match the transition duration in the CSS
