@@ -1,12 +1,160 @@
+
+ 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tech Loading Screen with Ads</title>
-    <link rel="stylesheet" href="style.css">
-     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4460528651611290"
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4460528651611290"
      crossorigin="anonymous"></script>
+    <style>
+        /* CSS is now embedded in the HTML file */
+        body, html {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1a1a1a; /* Dark background for the loader */
+            color: #e0e0e0;
+        }
+
+        /* Styles for the Progress Loader */
+        .progress-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        .progress-circle {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: conic-gradient(#00aaff 0deg, #1a1a1a 0deg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s ease-out;
+        }
+
+        .progress-circle::before {
+            content: '';
+            position: absolute;
+            width: 130px;
+            height: 130px;
+            background-color: #2b2b2b;
+            border-radius: 50%;
+        }
+
+        .progress-text {
+            position: relative;
+            font-size: 2em;
+            color: #00aaff;
+            font-weight: bold;
+        }
+
+        /* Styles for the Main Content */
+        .content-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            color: #333;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            padding: 0;
+            opacity: 0;
+            transition: opacity 1s ease-in;
+        }
+
+        nav.main-nav {
+            background-color: #2c3e50;
+            padding: 1rem;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+
+        nav.main-nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        nav.main-nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        header.page-header {
+            background-color: #34495e;
+            color: white;
+            text-align: center;
+            padding: 3rem 1rem;
+        }
+        
+        header.page-header h1 {
+            margin: 0;
+            font-size: 2.8rem;
+        }
+
+        main.page-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 2rem;
+        }
+
+        article.main-article {
+            flex: 3;
+            min-width: 60%;
+        }
+
+        article h2 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+
+        article h3 {
+            color: #34495e;
+        }
+
+        article p {
+            line-height: 1.7;
+            text-align: justify;
+            margin-bottom: 1rem;
+        }
+
+        aside.sidebar {
+            flex: 1;
+            min-width: 250px;
+            background-color: #ecf0f1;
+            padding: 1.5rem;
+            border-radius: 5px;
+        }
+        
+        aside.sidebar h3 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+
+        footer.page-footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+            margin-top: 2rem;
+        }
+    </style>
 </head>
 <body>
 
@@ -17,30 +165,90 @@
     </div>
 
     <div class="content-container" style="display: none;">
-        <header>
-            <h1>Welcome to Our Tech Hub!</h1>
+    
+        <nav class="main-nav">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">AI & Machine Learning</a></li>
+                <li><a href="#">Web Development</a></li>
+                <li><a href="#">Cybersecurity</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+        
+        <header class="page-header">
+            <h1>The Symbiotic Relationship Between Tech and Modern Business</h1>
+            <p>How Innovation Drives Growth and Efficiency</p>
         </header>
-        <main>
-            <article>
-                <h2>The Future of Web Development</h2>
-                <p>Here you will find the latest news and tutorials on web technologies...</p>
-                </article>
-            <aside>
-                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-your_publisher_id"
-                     crossorigin="anonymous"></script>
-                <ins class="adsbygoogle"
-                     style="display:block"
-                     data-ad-client="ca-pub-your_publisher_id"
-                     data-ad-slot="your_ad_slot_id"
-                     data-ad-format="auto"
-                     data-full-width-responsive="true"></ins>
-                <script>
-                     (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
+
+        <main class="page-content">
+        
+            <article class="main-article">
+                <h2>The Unstoppable March of Technology</h2>
+                <p>In today's interconnected world, technology is no longer a peripheral tool for businesses; it is the central nervous system. From small startups to multinational corporations, the integration of cutting-edge tech solutions has become the primary determinant of success and longevity. This article explores the profound impact of technology on business operations, customer engagement, and overall market strategy. We will delve into how advancements are not just helpful but essential for survival in a competitive landscape.</p>
+
+                <h3>Section 5.1: Automation and AI: The New Workforce</h3>
+                <p>The rise of Artificial Intelligence (AI) and automation represents a paradigm shift in how companies operate. Repetitive, manual tasks are increasingly being handled by intelligent systems, freeing up human capital to focus on creativity, strategy, and complex problem-solving. For instance, AI-powered chatbots now manage a significant portion of customer service inquiries, providing 24/7 support and instant responses. This not only improves customer satisfaction but also drastically reduces operational costs. Furthermore, machine learning algorithms can analyze vast datasets to predict market trends, optimize supply chains, and personalize marketing campaigns with a level of precision previously unimaginable.</p>
+                
+                <h3>Section 5.2: The Cloud Computing Revolution</h3>
+                <p>Cloud computing has democratized access to powerful infrastructure. Businesses no longer need to invest heavily in physical servers and data centers. With services like AWS, Google Cloud, and Azure, companies can access scalable, secure, and reliable computing resources on a pay-as-you-go basis. This flexibility allows businesses to scale their operations up or down in response to market demands, fostering agility and innovation. The cloud also facilitates remote work and collaboration, a crucial component of the modern workplace, by ensuring that data and applications are accessible from anywhere in the world.</p>
+                
+                <h3>Section 5.3: Data as the New Currency</h3>
+                <p>Every click, purchase, and interaction generates data. The ability to collect, process, and analyze this data is what separates industry leaders from the rest. Business intelligence (BI) tools and data analytics platforms transform raw data into actionable insights. These insights inform every aspect of the business, from product development to customer relationship management. Understanding customer behavior allows companies to create highly targeted and personalized experiences, which in turn builds loyalty and drives sales. In essence, data has become the most valuable asset a modern company can possess.</p>
+            </article>
+
+            <aside class="sidebar">
+                <h3>Support & Monetization</h3>
+                <p>Displaying ads helps us keep this content free. Thank you for your support!</p>
+                
+                
+                <p style="font-size: 0.8rem; text-align: center; color: #7f8c8d;">Advertisement</p>
             </aside>
+            
         </main>
+        
+        <footer class="page-footer">
+            <p>&copy; 2025 Tech Insights Hub. All rights reserved. A demonstration of modern web techniques.</p>
+        </footer>
+
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        // JavaScript is now embedded in the HTML file
+        const progressContainer = document.querySelector('.progress-container');
+        const progressCircle = document.querySelector('.progress-circle');
+        const progressText = document.querySelector('.progress-text');
+        const contentContainer = document.querySelector('.content-container');
+        const body = document.querySelector('body');
+
+        let progress = 0;
+        // The interval is set to a short duration (30ms) for a quick load effect
+        const interval = setInterval(() => {
+            progress++;
+            progressText.textContent = `${progress}%`;
+            // The multiplication by 3.6 converts percentage (0-100) to degrees (0-360)
+            progressCircle.style.background = `conic-gradient(#00aaff ${progress * 3.6}deg, #1a1a1a 0deg)`;
+
+            if (progress >= 100) {
+                clearInterval(interval);
+                
+                // Start fade out of progress bar
+                progressContainer.style.opacity = '0';
+
+                // After the fade out animation is complete, hide it and show content
+                setTimeout(() => {
+                    progressContainer.style.display = 'none';
+                    body.style.backgroundColor = '#ecf0f1'; // Change body background for the content
+                    contentContainer.style.display = 'block';
+
+                    // Use a short timeout to allow the display property to apply before starting the fade-in
+                    setTimeout(() => {
+                        contentContainer.style.opacity = '1';
+                    }, 50);
+
+                }, 500); // This timeout should match the transition duration in the CSS
+            }
+        }, 30);
+    </script>
 </body>
 </html>
