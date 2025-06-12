@@ -9,6 +9,7 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5278045911736030"
       crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Bz52W8K/rM5oD+jD/e9t4aQd2s1J7k3y4k5D8q4P2w0B9R2m9k9z4y9a4Y8f4f4e4c4d4e4f4g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap');
         
@@ -46,8 +47,8 @@
             align-items: center;
             position: sticky;
             top: 0;
-            width: 100%; /* Ensure it spans full width */
-            box-sizing: border-box; /* Include padding in width calculation */
+            width: 100%;
+            box-sizing: border-box;
             z-index: 999;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
         }
@@ -90,19 +91,18 @@
             padding: 5px;
         }
 
-        /* Progress Bar */
+        /* Progress Bar - Increased Height */
         .progress-container {
             width: 100%;
-            height: 5px;
+            height: 10px; /* Made bigger */
             background: #ccc;
             position: sticky;
-            /* Adjust top dynamically based on navbar height */
             top: var(--navbar-height-desktop); 
             z-index: 990;
         }
 
         .progress-bar {
-            height: 5px;
+            height: 10px; /* Made bigger */
             width: 0%;
             background-color: var(--apple-blue);
             transition: background-color 0.5s ease-in-out;
@@ -111,7 +111,10 @@
         .next-button-container {
             text-align: center;
             padding: 20px 0;
-            display: none; /* Hidden by default */
+            /* This container will be scrolled to, not directly shown */
+            display: block; /* Keep block so it occupies space for scrollIntoView */
+            margin-top: 50px; /* Add some space above it */
+            scroll-margin-top: 100px; /* Offset for sticky header and progress bar when scrolling to it */
         }
 
         .next-button {
@@ -123,8 +126,8 @@
             font-size: 1.2em;
             cursor: pointer;
             transition: background-color 0.3s ease;
-            text-decoration: none; /* For if it's a link */
-            display: inline-block; /* To center it properly */
+            text-decoration: none;
+            display: inline-block;
         }
 
         .next-button:hover {
@@ -221,8 +224,8 @@
             transform: scale(1.03);
         }
 
-        /* Video Container for Responsiveness */
-        .video-container {
+        /* Ad Video Container for Responsiveness */
+        .ad-video-embed-container {
             position: relative;
             padding-bottom: 56.25%; /* 16:9 aspect ratio */
             height: 0;
@@ -234,9 +237,9 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
-        .video-container iframe,
-        .video-container object,
-        .video-container embed {
+        .ad-video-embed-container iframe,
+        .ad-video-embed-container object,
+        .ad-video-embed-container embed {
             position: absolute;
             top: 0;
             left: 0;
@@ -246,23 +249,22 @@
 
         /* Ad Styling for Professional Display */
         .ad-container {
-            margin: 30px auto; /* Increased margin for better spacing */
+            margin: 30px auto;
             padding: 15px;
-            background-color: #ffffff; /* White background for ads */
-            border: 1px solid #e0e0e0; /* Subtle border */
+            background-color: #ffffff;
+            border: 1px solid #e0e0e0;
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            text-align: center; /* Ensures content inside is centered */
-            max-width: 728px; /* Max width for common ad sizes */
-            overflow: hidden; /* Prevent overflow issues */
+            text-align: center;
+            max-width: 728px;
+            overflow: hidden;
         }
         
-        /* Specific adjustments for video frames if any, usually handled by ad network */
         .ad-container iframe {
             max-width: 100%;
-            height: auto; /* Maintain aspect ratio for ad iframes, if they're not fixed height */
-            display: block; /* Remove extra space below iframe */
-            margin: 0 auto; /* Center the iframe if smaller than max-width */
+            height: auto;
+            display: block;
+            margin: 0 auto;
         }
 
         /* Footer */
@@ -285,6 +287,91 @@
             text-decoration: underline;
         }
 
+        /* Modal / Prompt Window */
+        .modal-overlay {
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6); /* Semi-transparent dark background */
+            backdrop-filter: blur(5px); /* Frosted glass effect */
+            z-index: 1000; /* Above everything else */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .modal-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 450px;
+            width: 90%; /* Responsive width */
+            transform: translateY(-20px);
+            transition: transform 0.3s ease;
+            box-sizing: border-box; /* Include padding in width */
+            border: 1px solid #e0e0e0;
+        }
+
+        .modal-overlay.show .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-content h3 {
+            color: var(--apple-dark-gray);
+            font-size: 1.6em;
+            margin-bottom: 20px;
+        }
+
+        .modal-content .modal-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .modal-content .modal-button {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .modal-content .modal-button.go {
+            background-color: var(--apple-blue);
+            color: white;
+        }
+
+        .modal-content .modal-button.go:hover {
+            background-color: var(--apple-dark-blue);
+            transform: translateY(-2px);
+        }
+
+        .modal-content .modal-button.stay {
+            background-color: #f0f0f0;
+            color: var(--apple-dark-gray);
+            border: 1px solid #e0e0e0;
+        }
+
+        .modal-content .modal-button.stay:hover {
+            background-color: #e5e5e5;
+            transform: translateY(-2px);
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .navbar {
@@ -294,21 +381,21 @@
             }
 
             .navbar-links {
-                display: none; /* Hide on mobile by default */
+                display: none;
                 flex-direction: column;
                 width: 100%;
                 background-color: var(--apple-dark-gray);
                 padding: 10px 0;
                 border-top: 1px solid rgba(255, 255, 255, 0.1);
                 position: absolute;
-                top: 100%; /* Position below navbar */
+                top: 100%;
                 left: 0;
                 right: 0;
                 z-index: 998;
             }
 
             .navbar-links.active {
-                display: flex; /* Show when active */
+                display: flex;
             }
 
             .navbar-links li {
@@ -324,7 +411,7 @@
             }
 
             .menu-toggle {
-                display: block; /* Show hamburger on mobile */
+                display: block;
             }
 
             .container {
@@ -348,7 +435,25 @@
             }
 
             .progress-container {
-                top: var(--navbar-height-mobile); /* Adjusted for mobile navbar height */
+                top: var(--navbar-height-mobile);
+            }
+
+            .modal-content {
+                padding: 25px;
+            }
+
+            .modal-content h3 {
+                font-size: 1.4em;
+            }
+
+            .modal-content .modal-buttons {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .modal-content .modal-button {
+                width: 100%;
+                padding: 10px 20px;
             }
         }
 
@@ -382,8 +487,16 @@
     <div class="progress-container">
         <div class="progress-bar" id="progressBar"></div>
     </div>
-    <div class="next-button-container" id="nextButtonContainer">
-        <button class="next-button" id="nextButton">المقال التالي</button>
+    
+    <div class="modal-overlay" id="nextArticleModal">
+        <div class="modal-content">
+            <h3>رابطك جاهز!</h3>
+            <p>هل ترغب بالانتقال إلى القسم التالي من المقال؟</p>
+            <div class="modal-buttons">
+                <button class="modal-button go" id="modalGoButton">اذهب!</button>
+                <button class="modal-button stay" id="modalStayButton">ابقى هنا</button>
+            </div>
+        </div>
     </div>
 
     <div class="container">
@@ -681,16 +794,15 @@
                 بالنسبة لـ Apple Vision Pro، يبني <strong>visionOS 2</strong> على أساسه الرائد، ويقدم طرقًا جديدة
                 للتفاعل مع المحتوى المكاني ويعزز التجربة الغامرة.
             </p>
-            <div class="video-container">
+            <div class="ad-video-embed-container">
                 <iframe
-                    src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                    src="https://vast-size.com/dXmDF/zXd.G/NMvzZ/GLUK/qePm-9NudZ_UmlhkkPjTNYn0AM/j/MFwKNXj_kztSN/jAQwyGM/zpAY3LMmAl" 
                     frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen>
+                    allowfullscreen sandbox="allow-scripts allow-same-origin allow-popups allow-forms">
                 </iframe>
             </div>
             <p style="margin-top: 15px;">
-                شاهد هذا الفيديو التجريبي لترى كيف يمكن للمشاهد المكانية تغيير تجربتك.
+                شاهد هذا الإعلان الهام.
             </p>
 
             <h3>ابتكارات visionOS 2:</h3>
@@ -729,10 +841,14 @@
                 <li><strong>تحسينات في أدوات التصميم:</strong> تم تحديث SwiftUI وUIKit بأدوات تصميم جديدة تسهل على المطورين إنشاء واجهات مستخدم متطورة ومتجاوبة.</li>
             </ul>
         </section>
+
+        <div class="next-button-container" id="nextArticleSection">
+            <button class="next-button" id="nextButton">المقال التالي</button>
+        </div>
     </div>
 
     <footer>
-        <p>&copy; 2025 WWDC Innovations. جميع الحقوق محفوظة.</p>
+        <p>© 2025 WWDC Innovations. جميع الحقوق محفوظة.</p>
         <p><a href="#">سياسة الخصوصية</a> | <a href="#">شروط الاستخدام</a></p>
     </footer>
 
@@ -741,12 +857,13 @@
             const navbarLinks = document.getElementById('navbarLinks');
             const menuToggle = document.querySelector('.menu-toggle');
             const progressBar = document.getElementById('progressBar');
-            const nextButtonContainer = document.getElementById('nextButtonContainer');
-            const nextButton = document.getElementById('nextButton');
-            // Select a more encompassing element for the content area that contains your scrollable text
-            const scrollableContent = document.querySelector('.container'); 
+            const nextArticleModal = document.getElementById('nextArticleModal');
+            const modalGoButton = document.getElementById('modalGoButton');
+            const modalStayButton = document.getElementById('modalStayButton');
+            const nextArticleSection = document.getElementById('nextArticleSection'); // The section to scroll to
+            
             let adsLoaded = false;
-            let progressBarCompleted = false; // Track progress bar state
+            let progressBarCompleted = false;
 
             // Toggle Mobile Menu
             if (menuToggle && navbarLinks) {
@@ -754,7 +871,6 @@
                     navbarLinks.classList.toggle('active');
                 });
 
-                // Close menu when a link is clicked (for smooth scrolling)
                 navbarLinks.querySelectorAll('a').forEach(link => {
                     link.addEventListener('click', () => {
                         if (navbarLinks.classList.contains('active')) {
@@ -766,7 +882,7 @@
 
             // Lazy Load Ads Function
             function loadAds() {
-                if (adsLoaded) return; // Only load once
+                if (adsLoaded) return;
                 const adSlots = document.querySelectorAll('.ad-slot');
 
                 adSlots.forEach(adSlot => {
@@ -786,7 +902,6 @@
                         const adWidth = adSlot.dataset.adWidth;
                         const adHeight = adSlot.dataset.adHeight;
                         if (adKey) {
-                            // Clear existing content to prevent multiple loads if re-triggered
                             adSlot.innerHTML = ''; 
                             const iframeScript = document.createElement('script');
                             iframeScript.type = 'text/javascript';
@@ -808,8 +923,6 @@
                             adSlot.appendChild(invokeScript);
                         }
                     } else if (adType === 'adsense') {
-                        // For AdSense, the ins tag is already in place. We just need to push the ad.
-                        // Ensure the ins tag is within the adSlot for proper AdSense rendering
                         const insTag = adSlot.querySelector('.adsbygoogle');
                         if (insTag) {
                             (window.adsbygoogle = window.adsbygoogle || []).push({});
@@ -828,23 +941,19 @@
                 if (!userInteracted) {
                     loadAds();
                     userInteracted = true;
-                    // Remove listeners after first interaction
                     interactionEvents.forEach(event => 
                         window.removeEventListener(event, handleUserInteraction)
                     );
                 }
             }
 
-            // Add listeners for initial interaction
             interactionEvents.forEach(event => 
                 window.addEventListener(event, handleUserInteraction, { once: true })
             );
 
-            // Progress Bar and "Next" Button Logic
+            // Progress Bar and Modal Logic
             function updateProgressBar() {
-                // Total scrollable height of the document
                 const fullHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-                // Current scroll position
                 const scrolledDistance = document.documentElement.scrollTop;
 
                 let scrollPercentage = 0;
@@ -854,49 +963,60 @@
                 
                 progressBar.style.width = scrollPercentage + '%';
 
-                if (scrollPercentage >= 99 && !progressBarCompleted) { // Consider 99% or 100% as fully scrolled
-                    progressBarCompleted = true; // Mark as completed
+                if (scrollPercentage >= 99 && !progressBarCompleted) { // Check for almost 100% completion
+                    progressBarCompleted = true;
+                    // Change color of progress bar before showing modal
+                    progressBar.style.backgroundColor = 'green';
+
                     setTimeout(() => {
-                        progressBar.style.backgroundColor = 'green';
-                        progressBar.style.display = 'none'; // Hide progress bar
-                        nextButtonContainer.style.display = 'block'; // Show next button
-                    }, 5000); // 5-second delay
+                        // Display the modal after a short delay
+                        nextArticleModal.classList.add('show');
+                        // Optionally hide the progress bar here if desired, or let it stay green
+                        // progressBar.style.display = 'none'; 
+                    }, 1000); // 1-second delay before showing modal
                 } else if (scrollPercentage < 99 && progressBarCompleted) {
                     // If scrolled back up after completing, reset state
                     progressBarCompleted = false;
                     progressBar.style.backgroundColor = 'var(--apple-blue)'; // Reset color
-                    progressBar.style.display = 'block'; // Ensure progress bar is visible
-                    nextButtonContainer.style.display = 'none'; // Hide next button
+                    // progressBar.style.display = 'block'; // Ensure it's visible if it was hidden
+                    nextArticleModal.classList.remove('show'); // Hide modal if scrolled back up
                 } else if (scrollPercentage < 99) {
                     progressBar.style.backgroundColor = 'var(--apple-blue)'; // Keep blue if not completed
-                    progressBar.style.display = 'block';
-                    nextButtonContainer.style.display = 'none';
+                    // progressBar.style.display = 'block';
+                    nextArticleModal.classList.remove('show');
                 }
             }
 
-            // Listen to scroll events on the window
             window.addEventListener('scroll', updateProgressBar);
             updateProgressBar(); // Call once on load to set initial state
 
-            // Optional: Handle 'Next' button click
-            if (nextButton) {
-                nextButton.addEventListener('click', function() {
-                    alert('Moving to the next article!'); // Placeholder for actual navigation
-                    // window.location.href = 'link-to-next-article.html'; // Uncomment and replace with actual link
+            // Modal button event listeners
+            if (modalGoButton) {
+                modalGoButton.addEventListener('click', function() {
+                    nextArticleModal.classList.remove('show'); // Hide modal
+                    // Scroll to the next article section
+                    if (nextArticleSection) {
+                        nextArticleSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            }
+
+            if (modalStayButton) {
+                modalStayButton.addEventListener('click', function() {
+                    nextArticleModal.classList.remove('show'); // Hide modal
                 });
             }
 
             // Dynamic adjustment of progress bar top based on navbar height
-            // This is a simple approximation. For more robust solution, use ResizeObserver or measure after render.
             function adjustProgressBarTop() {
                 const navbar = document.querySelector('.navbar');
                 if (navbar) {
                     const navbarHeight = navbar.offsetHeight;
                     document.documentElement.style.setProperty('--navbar-height-desktop', `${navbarHeight}px`);
-                    document.documentElement.style.setProperty('--navbar-height-mobile', `${navbarHeight}px`); // Use the same for mobile if it adjusts itself
+                    document.documentElement.style.setProperty('--navbar-height-mobile', `${navbarHeight}px`);
                 }
             }
-            // Run on initial load and resize
+            
             adjustProgressBarTop();
             window.addEventListener('resize', adjustProgressBarTop);
         });
