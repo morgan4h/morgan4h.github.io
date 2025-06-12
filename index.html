@@ -223,30 +223,7 @@
         .image-gallery img:hover {
             transform: scale(1.03);
         }
-
-        /* Ad Video Container for Responsiveness */
-        .ad-video-embed-container {
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 aspect ratio */
-            height: 0;
-            overflow: hidden;
-            max-width: 100%;
-            background: #000;
-            margin-top: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .ad-video-embed-container iframe,
-        .ad-video-embed-container object,
-        .ad-video-embed-container embed {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-
+        
         /* Ad Styling for Professional Display */
         .ad-container {
             margin: 30px auto;
@@ -794,15 +771,12 @@
                 بالنسبة لـ Apple Vision Pro، يبني <strong>visionOS 2</strong> على أساسه الرائد، ويقدم طرقًا جديدة
                 للتفاعل مع المحتوى المكاني ويعزز التجربة الغامرة.
             </p>
-            <div class="ad-video-embed-container">
-                <iframe
-                    src="https://vast-size.com/dXmDF/zXd.G/NMvzZ/GLUK/qePm-9NudZ_UmlhkkPjTNYn0AM/j/MFwKNXj_kztSN/jAQwyGM/zpAY3LMmAl" 
-                    frameborder="0" 
-                    allowfullscreen sandbox="allow-scripts allow-same-origin allow-popups allow-forms">
-                </iframe>
-            </div>
+            <center>
+                <div class="ad-container ad-slot" data-ad-type="iframe" data-ad-key="YOUR_VIDEO_AD_OR_OTHER_AD_MAVEN_KEY_HERE" data-ad-width="728" data-ad-height="90">
+                    </div>
+            </center>
             <p style="margin-top: 15px;">
-                شاهد هذا الإعلان الهام.
+                يمكن أن يظهر هنا إعلان مخصص للفيديو أو لافتة.
             </p>
 
             <h3>ابتكارات visionOS 2:</h3>
@@ -903,24 +877,36 @@
                         const adHeight = adSlot.dataset.adHeight;
                         if (adKey) {
                             adSlot.innerHTML = ''; 
-                            const iframeScript = document.createElement('script');
-                            iframeScript.type = 'text/javascript';
-                            iframeScript.innerHTML = `
-                                var atOptions = {
-                                    'key' : '${adKey}',
-                                    'format' : 'iframe',
-                                    'height' : ${adHeight},
-                                    'width' : ${adWidth},
-                                    'params' : {}
-                                };
-                            `;
-                            adSlot.appendChild(iframeScript);
+                            // Check if this is a direct iframe source like for AdMaven
+                            if (adKey.includes('http://') || adKey.includes('https://')) { // Simple check for a URL as key
+                                const iframe = document.createElement('iframe');
+                                iframe.src = adKey; // Use the key directly as src
+                                iframe.width = adWidth || '100%';
+                                iframe.height = adHeight || 'auto';
+                                iframe.frameBorder = '0';
+                                iframe.allowFullscreen = true;
+                                iframe.sandbox = 'allow-scripts allow-same-origin allow-popups allow-forms'; // Recommended for iframe ads
+                                adSlot.appendChild(iframe);
+                            } else { // Assume it's an AdMaven key for their script
+                                const iframeScript = document.createElement('script');
+                                iframeScript.type = 'text/javascript';
+                                iframeScript.innerHTML = `
+                                    var atOptions = {
+                                        'key' : '${adKey}',
+                                        'format' : 'iframe',
+                                        'height' : ${adHeight},
+                                        'width' : ${adWidth},
+                                        'params' : {}
+                                    };
+                                `;
+                                adSlot.appendChild(iframeScript);
 
-                            const invokeScript = document.createElement('script');
-                            invokeScript.type = 'text/javascript';
-                            invokeScript.src = `//www.highperformanceformat.com/${adKey}/invoke.js`;
-                            invokeScript.async = true;
-                            adSlot.appendChild(invokeScript);
+                                const invokeScript = document.createElement('script');
+                                invokeScript.type = 'text/javascript';
+                                invokeScript.src = `//www.highperformanceformat.com/${adKey}/invoke.js`;
+                                invokeScript.async = true;
+                                adSlot.appendChild(invokeScript);
+                            }
                         }
                     } else if (adType === 'adsense') {
                         const insTag = adSlot.querySelector('.adsbygoogle');
@@ -971,18 +957,14 @@
                     setTimeout(() => {
                         // Display the modal after a short delay
                         nextArticleModal.classList.add('show');
-                        // Optionally hide the progress bar here if desired, or let it stay green
-                        // progressBar.style.display = 'none'; 
                     }, 1000); // 1-second delay before showing modal
                 } else if (scrollPercentage < 99 && progressBarCompleted) {
                     // If scrolled back up after completing, reset state
                     progressBarCompleted = false;
                     progressBar.style.backgroundColor = 'var(--apple-blue)'; // Reset color
-                    // progressBar.style.display = 'block'; // Ensure it's visible if it was hidden
                     nextArticleModal.classList.remove('show'); // Hide modal if scrolled back up
                 } else if (scrollPercentage < 99) {
                     progressBar.style.backgroundColor = 'var(--apple-blue)'; // Keep blue if not completed
-                    // progressBar.style.display = 'block';
                     nextArticleModal.classList.remove('show');
                 }
             }
