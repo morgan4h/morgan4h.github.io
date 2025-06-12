@@ -619,20 +619,29 @@ l.parentNode.insertBefore(s, l);
 		<!-- Fluid Player CSS -->
 <link rel="stylesheet" href="https://cdn.fluidplayer.com/v3/current/fluidplayer.min.css" />
 
-<!-- Your Video Element -->
-<video id="vast-video" style="width: 100%; max-width: 480px;" controls muted playsinline>
-    <source src="https://cdn.fluidplayer.com/videos/sample.mp4" type="video/mp4" />
+<!-- Responsive Video Container -->
+<video id="vast-video" style="width: 100%; max-width: 480px;" muted autoplay playsinline>
+  <!-- Dummy video file (must have something to trigger the VAST ad) -->
+  <source src="https://cdn.fluidplayer.com/videos/sample.mp4" type="video/mp4" />
 </video>
 
-<!-- Fluid Player Script -->
+<!-- Fluid Player JS -->
 <script src="https://cdn.fluidplayer.com/v3/current/fluidplayer.min.js"></script>
 
 <script>
-    fluidPlayer("vast-video", {
-        vastOptions: {
-            vastTag: "https://vast-size.com/dzm.FGzXdkGyNuvYZoGIUJ/Te/mI9VuPZFUrlikKP/TpYm0BMPj_Mcw/NbjFkGtLN/jwQJyYM-zPAN3NMKAB"
-        }
-    });
+  fluidPlayer("vast-video", {
+    layoutControls: {
+      autoplay: true,
+      muted: true,
+      fillToContainer: true,
+      autoPlayWhenVisible: true,
+    },
+    vastOptions: {
+      vastTag: "https://vast-size.com/d.mtF/zVdCGxNOvfZUGQUw/gebmT9/u/ZyUrlikRPATpY-0/MbjIMawdNOj/kGtBNejHQwyiMJzWAU3bM-CfZrs/a/WS1TpVdpDk0Pxr",
+      skipButtonCaption: "Skip ad",
+      skipOffset: 5
+    }
+  });
 </script>
 
             <div class="highlight-box">
