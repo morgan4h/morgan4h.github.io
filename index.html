@@ -4,36 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>مؤتمر المطورين العالمي 2025: ابتكارات Apple - تحديثات رئيسية</title>
-	<meta name="google-adsense-account" content="ca-pub-5278045911736030">
-	<meta name='admaven-placement' content=BqdUFqjC8>
-	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5278045911736030"
-     crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script>(function(d,z,s){s.src='https://'+d+'/401/'+z;try{(document.body||document.documentElement).appendChild(s)}catch(e){}})('gizokraijaw.net',9440766,document.createElement('script'))</script>
-	<script>
-(function(ufs){
-var d = document,
-    s = d.createElement('script'),
-    l = d.scripts[d.scripts.length - 1];
-s.settings = ufs || {};
-s.src = "\/\/vast-size.com\/c.DK9R6\/bJ2_5ulKSYWYQv9jNEjBQYy_MPz\/IAxaNhyV0Y2PNjDNIIzpMXj\/EB4x";
-s.async = true;
-s.referrerPolicy = 'no-referrer-when-downgrade';
-l.parentNode.insertBefore(s, l);
-})({})
-</script>
-	<script>
-(function(dchk){
-var d = document,
-    s = d.createElement('script'),
-    l = d.scripts[d.scripts.length - 1];
-s.settings = dchk || {};
-s.src = "\/\/oilycoat.com\/b.XKVBsSdqGmlU0FYfW_cx\/IeTmp9IuTZvUhlEkGPdTJYN0\/MBjTMnyGMPjFUftyN\/j\/QmymMRzBI\/yVNHgU";
-s.async = true;
-s.referrerPolicy = 'no-referrer-when-downgrade';
-l.parentNode.insertBefore(s, l);
-})({})
-</script>
+    <meta name="google-adsense-account" content="ca-pub-5278045911736030">
+    <meta name='admaven-placement' content=BqdUFqjC8>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5278045911736030"
+      crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Bz52W8K/rM5oD+jD/e9t4aQd2s1J7k3y4k5D8q4P2w0B9R2m9k9z4y9a4Y8f4f4a3d4f4e4c4d4e4f4g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap');
         
@@ -65,7 +40,7 @@ l.parentNode.insertBefore(s, l);
             color: white;
             padding: 30px 0;
             text-align: center;
-            position: relative; /* Changed from sticky to relative for better mobile handling with a separate sticky nav */
+            position: relative;
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
         }
@@ -133,6 +108,47 @@ l.parentNode.insertBefore(s, l);
             padding: 5px;
         }
 
+        /* Progress Bar */
+        .progress-container {
+            width: 100%;
+            height: 5px;
+            background: #ccc;
+            position: sticky;
+            top: 60px; /* Adjust based on navbar height */
+            z-index: 990;
+            margin-top: -5px; /* Overlap with navbar if needed */
+        }
+
+        .progress-bar {
+            height: 5px;
+            width: 0%;
+            background-color: var(--apple-blue);
+            transition: background-color 0.5s ease-in-out;
+        }
+
+        .next-button-container {
+            text-align: center;
+            padding: 20px 0;
+            display: none; /* Hidden by default */
+        }
+
+        .next-button {
+            background-color: var(--apple-blue);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-decoration: none; /* For if it's a link */
+            display: inline-block; /* To center it properly */
+        }
+
+        .next-button:hover {
+            background-color: var(--apple-dark-blue);
+        }
+
         /* Container & Sections */
         .container {
             max-width: 1000px;
@@ -147,8 +163,8 @@ l.parentNode.insertBefore(s, l);
             border-radius: 12px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            position: relative; /* For scroll-spy active states */
-            scroll-margin-top: 80px; /* Offset for sticky header */
+            position: relative;
+            scroll-margin-top: 80px;
         }
 
         section:hover {
@@ -221,6 +237,27 @@ l.parentNode.insertBefore(s, l);
 
         .image-gallery img:hover {
             transform: scale(1.03);
+        }
+
+        /* Ad Styling for Professional Display */
+        .ad-container {
+            margin: 30px auto; /* Increased margin for better spacing */
+            padding: 15px;
+            background-color: #ffffff; /* White background for ads */
+            border: 1px solid #e0e0e0; /* Subtle border */
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            text-align: center; /* Ensures content inside is centered */
+            max-width: 728px; /* Max width for common ad sizes */
+            overflow: hidden; /* Prevent overflow issues */
+        }
+        
+        /* Specific adjustments for video frames if any, usually handled by ad network */
+        .ad-container iframe {
+            max-width: 100%;
+            height: auto; /* Maintain aspect ratio */
+            display: block; /* Remove extra space below iframe */
+            margin: 0 auto; /* Center the iframe if smaller than max-width */
         }
 
         /* Footer */
@@ -308,6 +345,10 @@ l.parentNode.insertBefore(s, l);
             section h3 {
                 font-size: 1.4em;
             }
+
+            .progress-container {
+                top: 50px; /* Adjust for smaller mobile nav bar height */
+            }
         }
 
         @media (max-width: 480px) {
@@ -321,7 +362,10 @@ l.parentNode.insertBefore(s, l);
     </style>
 </head>
 <body>
-  <center>
+    <header>
+        <h1>مؤتمر المطورين العالمي 2025</h1>
+        <p>ابتكارات Apple وتحديثات رئيسية</p>
+    </header>
 
     <nav class="navbar">
         <a href="#introduction" class="logo">WWDC 2025</a>
@@ -341,7 +385,14 @@ l.parentNode.insertBefore(s, l);
             <li><a href="#developer-tools">أدوات المطورين</a></li>
         </ul>
     </nav>
-<script type='text/javascript' src='//pl26896240.profitableratecpm.com/c5/54/ab/c554ab77178a32c9414a0f8b667e8383.js'></script>
+
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+    <div class="next-button-container" id="nextButtonContainer">
+        <button class="next-button" id="nextButton">المقال التالي</button>
+    </div>
+
     <div class="container">
         <section id="introduction">
             <h2>مقدمة: مؤتمر المطورين العالمي 2025</h2>
@@ -358,18 +409,11 @@ l.parentNode.insertBefore(s, l);
                 أكثر شخصية، واستباقية، وبديهية من أي وقت مضى. دعونا نتعمق في الإعلانات الرئيسية.
             </p>
         </section>
-	    <script>
-(function(otwwge){
-var d = document,
-    s = d.createElement('script'),
-    l = d.scripts[d.scripts.length - 1];
-s.settings = otwwge || {};
-s.src = "\/\/oilycoat.com\/bgX.VYsZdcG\/l\/0yYuWdcO\/ue\/mQ9KulZIUQl\/kDP\/TPYk0vMxjsM\/w\/OCTecqtsNoj-QRy\/MpzEAN5VOCAE";
-s.async = true;
-s.referrerPolicy = 'no-referrer-when-downgrade';
-l.parentNode.insertBefore(s, l);
-})({})
-</script>
+
+        <center>
+            <div class="ad-container ad-slot" data-ad-type="script" data-ad-src='//pl26896240.profitableratecpm.com/c5/54/ab/c554ab77178a32c9414a0f8b667e8383.js'>
+                </div>
+        </center>
 
         <section id="apple-intelligence">
             <h2>ذكاء Apple: تجربة شخصية وقوية</h2>
@@ -406,17 +450,13 @@ l.parentNode.insertBefore(s, l);
                 من أجلك، يحترم خصوصيتك في كل خطوة."
             </div>
         </section>
-<script type="text/javascript">
-	atOptions = {
-		'key' : '42765e1a18c314f57af048c82c4f035b',
-		'format' : 'iframe',
-		'height' : 250,
-		'width' : 300,
-		'params' : {}
-	};
-</script>
-<script type="text/javascript" src="//www.highperformanceformat.com/42765e1a18c314f57af048c82c4f035b/invoke.js"></script>
-	    <section id="liquid-glass">
+
+        <center>
+            <div class="ad-container ad-slot" data-ad-type="script" data-ad-src='//oilycoat.com/bgX.VYsZdcG/l/0yYuWdcO/ue/mQ9KulZIUQl/kDP/TPYk0vMxjsM/w/OCTecqtsNoj-QRy/MpzEAN5VOCAE'>
+                </div>
+        </center>
+
+        <section id="liquid-glass">
             <h2>Liquid Glass: لغة تصميم جديدة ومذهلة</h2>
             <p>
                 قدمت Apple <strong>Liquid Glass</strong>، وهي لغة تصميم برمجيات جديدة تمامًا سيتم
@@ -442,16 +482,26 @@ l.parentNode.insertBefore(s, l);
                 بجعل محتواك هو النجم، مع واجهة ديناميكية، وممتعة، ودائمًا في حالة تدفق."
             </div>
         </section>
-<script type="text/javascript">
-	atOptions = {
-		'key' : '42765e1a18c314f57af048c82c4f035b',
-		'format' : 'iframe',
-		'height' : 250,
-		'width' : 300,
-		'params' : {}
-	};
-</script>
-<script type="text/javascript" src="//www.highperformanceformat.com/42765e1a18c314f57af048c82c4f035b/invoke.js"></script>
+
+        <center>
+            <div class="ad-container ad-slot" data-ad-type="adsense">
+                <ins class="adsbygoogle"
+                    style="display:block"
+                    data-ad-client="ca-pub-5278045911736030"
+                    data-ad-slot="YOUR_AD_SLOT_ID_HERE"
+                    data-ad-format="auto"
+                    data-full-width-responsive="true"></ins>
+                <script>
+                    // AdSense push command will be executed by the lazy load script
+                    // (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+        </center>
+        <center>
+            <div class="ad-container ad-slot" data-ad-type="iframe" data-ad-key="42765e1a18c314f57af048c82c4f035b" data-ad-width="300" data-ad-height="250">
+                </div>
+        </center>
+
         <section id="ios-26">
             <h2>iOS 26: شخصية، ذكية، وقوية</h2>
             <p>
@@ -476,22 +526,15 @@ l.parentNode.insertBefore(s, l);
                 <li><strong>المشاهد المكانية (Spatial Scenes):</strong> بالاستفادة من التعلم الآلي، يمكن الآن تحويل أي صورة ثنائية الأبعاد
                     إلى مشهد مكاني، مما يخلق تأثير عمق محاكي عند تحريك iPhone، مما يوفر
                     تجربة ثلاثية الأبعاد ممتعة.</li>
-		    <script>
-(function(bwjoh){
-var d = document,
-    s = d.createElement('script'),
-    l = d.scripts[d.scripts.length - 1];
-s.settings = bwjoh || {};
-s.src = "\/\/oilycoat.com\/byX.VGsPd_G_lo0pYcWccm\/neqm\/9\/ueZ\/UalNkoPqTxYp0\/MCjHMcyJM_jCUDtuNejJQFysMKzGIqylNUgB";
-s.async = true;
-s.referrerPolicy = 'no-referrer-when-downgrade';
-l.parentNode.insertBefore(s, l);
-})({})
-</script>
                 <li><strong>تطبيق ألعاب مخصص جديد:</strong> يوفر تطبيق ألعاب مركزي اكتشافًا شخصيًا،
                     وتراكبًا للعبة لإعدادات داخل اللعبة، وميزات اجتماعية، ويوحد الألعاب التابعة لجهات خارجية مع Apple Arcade.</li>
             </ul>
         </section>
+
+        <center>
+            <div class="ad-container ad-slot" data-ad-type="script" data-ad-src='//oilycoat.com/byX.VGsPd_G_lo0pYcWccm/neqm/9/ueZ/UalNkoPqTxYp0/MCjHMcyJM_jCUDtuNejJQFysMKzGIqylNUgB'>
+                </div>
+        </center>
 
         <section id="ipados-26">
             <h2>iPadOS 26: نحو إنتاجية احترافية</h2>
@@ -516,16 +559,25 @@ l.parentNode.insertBefore(s, l);
                     للتحديد في ملفات PDF والصور باستخدام Apple Pencil.</li>
             </ul>
         </section>
-<script type="text/javascript">
-	atOptions = {
-		'key' : '42765e1a18c314f57af048c82c4f035b',
-		'format' : 'iframe',
-		'height' : 250,
-		'width' : 300,
-		'params' : {}
-	};
-</script>
-<script type="text/javascript" src="//www.highperformanceformat.com/42765e1a18c314f57af048c82c4f035b/invoke.js"></script>
+
+        <center>
+            <div class="ad-container ad-slot" data-ad-type="adsense">
+                <ins class="adsbygoogle"
+                    style="display:block"
+                    data-ad-client="ca-pub-5278045911736030"
+                    data-ad-slot="YOUR_AD_SLOT_ID_HERE_2"
+                    data-ad-format="auto"
+                    data-full-width-responsive="true"></ins>
+                <script>
+                    // (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+        </center>
+        <center>
+            <div class="ad-container ad-slot" data-ad-type="iframe" data-ad-key="42765e1a18c314f57af048c82c4f035b" data-ad-width="300" data-ad-height="250">
+                </div>
+        </center>
+
         <section id="macos-tahoe-26">
             <h2>macOS Tahoe 26: استمرارية وذكاء معززان</h2>
             <p>
@@ -539,18 +591,6 @@ l.parentNode.insertBefore(s, l);
                     في جهاز iPhone الخاص بك مباشرة من جهاز Mac الخاص بك. يتم إعادة توجيه الإشعارات والصوت بسلاسة
                     إلى جهاز Mac، ويمكنك حتى سحب الملفات وإسقاطها بين الأجهزة. يعمل النسخ المتطابق حتى عندما يكون iPhone
                     مقفلًا.</li>
-		    <script>
-(function(bwjoh){
-var d = document,
-    s = d.createElement('script'),
-    l = d.scripts[d.scripts.length - 1];
-s.settings = bwjoh || {};
-s.src = "\/\/oilycoat.com\/byX.VGsPd_G_lo0pYcWccm\/neqm\/9\/ueZ\/UalNkoPqTxYp0\/MCjHMcyJM_jCUDtuNejJQFysMKzGIqylNUgB";
-s.async = true;
-s.referrerPolicy = 'no-referrer-when-downgrade';
-l.parentNode.insertBefore(s, l);
-})({})
-</script>
                 <li><strong>إصلاح شامل لـ Spotlight:</strong> يصبح Spotlight أكثر ذكاءً بشكل ملحوظ، ويدعم
                     التصفية المتقدمة، والمفاتيح السريعة، ومئات الإجراءات المباشرة. يمكن للمستخدمين الآن تنفيذ مهام مثل
                     إرسال رسائل البريد الإلكتروني، وتشغيل الاختصارات، والعثور على المحتوى عبر تطبيقات Mac و iPhone مباشرة من Spotlight.</li>
@@ -568,8 +608,13 @@ l.parentNode.insertBefore(s, l);
                     مع تطبيق الملفات على iOS و iPadOS.</li>
             </ul>
         </section>
-<script async="async" data-cfasync="false" src="//pl26896279.profitableratecpm.com/7d7b22532148f8fe8f7b68bbc12082a8/invoke.js"></script>
-<div id="container-7d7b22532148f8fe8f7b68bbc12082a8"></div>
+
+        <center>
+            <div class="ad-container ad-slot" data-ad-type="script" data-ad-src='//pl26896279.profitableratecpm.com/7d7b22532148f8fe8f7b68bbc12082a8/invoke.js'>
+                <div id="container-7d7b22532148f8fe8f7b68bbc12082a8"></div>
+            </div>
+        </center>
+
         <section id="watchos-26">
             <h2>watchOS 26: صحة وتخصيص أعمق</h2>
             <p>
@@ -593,16 +638,25 @@ l.parentNode.insertBefore(s, l);
                     الإشعارات بسرعة بيد واحدة.</li>
             </ul>
         </section>
-<script type="text/javascript">
-	atOptions = {
-		'key' : '42765e1a18c314f57af048c82c4f035b',
-		'format' : 'iframe',
-		'height' : 250,
-		'width' : 300,
-		'params' : {}
-	};
-</script>
-<script type="text/javascript" src="//www.highperformanceformat.com/42765e1a18c314f57af048c82c4f035b/invoke.js"></script>
+
+        <center>
+            <div class="ad-container ad-slot" data-ad-type="adsense">
+                <ins class="adsbygoogle"
+                    style="display:block"
+                    data-ad-client="ca-pub-5278045911736030"
+                    data-ad-slot="YOUR_AD_SLOT_ID_HERE_3"
+                    data-ad-format="auto"
+                    data-full-width-responsive="true"></ins>
+                <script>
+                    // (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+        </center>
+        <center>
+            <div class="ad-container ad-slot" data-ad-type="iframe" data-ad-key="42765e1a18c314f57af048c82c4f035b" data-ad-width="300" data-ad-height="250">
+                </div>
+        </center>
+
         <section id="carplay-home">
             <h2>CarPlay والمنزل: اتصال أذكى</h2>
             <p>
@@ -611,18 +665,6 @@ l.parentNode.insertBefore(s, l);
             </p>
             <h3>تحسينات CarPlay و HomeKit:</h3>
             <ul>
-		    <script>
-(function(bwjoh){
-var d = document,
-    s = d.createElement('script'),
-    l = d.scripts[d.scripts.length - 1];
-s.settings = bwjoh || {};
-s.src = "\/\/oilycoat.com\/byX.VGsPd_G_lo0pYcWccm\/neqm\/9\/ueZ\/UalNkoPqTxYp0\/MCjHMcyJM_jCUDtuNejJQFysMKzGIqylNUgB";
-s.async = true;
-s.referrerPolicy = 'no-referrer-when-downgrade';
-l.parentNode.insertBefore(s, l);
-})({})
-</script>
                 <li><strong>تجربة CarPlay معاد تصميمها:</strong> يحصل CarPlay على مظهر جديد مع عرض مكالمات
                     مدمج جديد يقلل من التشتيت. تجلب الأدوات المزيد من المعلومات إلى لوحة القيادة، ويتم دمج الأنشطة المباشرة،
                     مما يوفر تحديثات في الوقت الفعلي مباشرة في CarPlay.</li>
@@ -634,6 +676,11 @@ l.parentNode.insertBefore(s, l);
                     قدرات التشغيل الآلي.</li>
             </ul>
         </section>
+
+        <center>
+            <div class="ad-container ad-slot" data-ad-type="script" data-ad-src='//oilycoat.com/byX.VGsPd_G_lo0pYcWccm/neqm/9/ueZ/UalNkoPqTxYp0/MCjHMcyJM_jCUDtuNejJQFysMKzGIqylNUgB'>
+                </div>
+        </center>
 
         <section id="visionos-2">
             <h2>visionOS 2: توسيع حدود الحوسبة المكانية</h2>
@@ -655,19 +702,12 @@ l.parentNode.insertBefore(s, l);
                     تثبيتها داخل بيئة المستخدم، مما يوفر تجارب أكثر ديناميكية وتفاعلية.</li>
             </ul>
         </section>
-	    
-	    <script>
-(function(ynwj){
-var d = document,
-    s = d.createElement('script'),
-    l = d.scripts[d.scripts.length - 1];
-s.settings = ynwj || {};
-s.src = "\/\/oilycoat.com\/bNX.VusPdxGDlv0dY\/Wbcd\/he_mm9xumZOURl\/kyPwT\/Y\/0\/MJjOMLwWNOTDIhtFNOjEQryBMNz\/Aw1\/MywV";
-s.async = true;
-s.referrerPolicy = 'no-referrer-when-downgrade';
-l.parentNode.insertBefore(s, l);
-})({})
-</script>
+        
+        <center>
+            <div class="ad-container ad-slot" data-ad-type="script" data-ad-src='//oilycoat.com/bNX.VusPdxGDlv0dY/Wbcd/he_mm9xumZOURl/kyPwT/Y/0/MJjOMLwWNOTDIhtFNOjEQryBMNz/Aw1/MywV'>
+                </div>
+        </center>
+
         <section id="developer-tools">
             <h2>أدوات المطورين: تمكين الابتكار</h2>
             <p>
@@ -676,161 +716,155 @@ l.parentNode.insertBefore(s, l);
             </p>
             <h3>إعلانات المطورين الرئيسية:</h3>
             <ul>
-		    <script>
-(function(bwjoh){
-var d = document,
-    s = d.createElement('script'),
-    l = d.scripts[d.scripts.length - 1];
-s.settings = bwjoh || {};
-s.src = "\/\/oilycoat.com\/byX.VGsPd_G_lo0pYcWccm\/neqm\/9\/ueZ\/UalNkoPqTxYp0\/MCjHMcyJM_jCUDtuNejJQFysMKzGIqylNUgB";
-s.async = true;
-s.referrerPolicy = 'no-referrer-when-downgrade';
-l.parentNode.insertBefore(s, l);
-})({})
-</script>
                 <li><strong>Xcode 26:</strong> يتلقى بيئة التطوير المتكاملة (IDE) تحديثات رئيسية،
                     بما في ذلك التكامل الأعمق مع نماذج ذكاء Apple، وأدوات اختبار محسنة، و
                     تحسينات في الأداء. يتم أيضًا دعم تكامل ChatGPT لتوليد التعليمات البرمجية وتصحيح الأخطاء.</li>
                 <li><strong>Swift 6 و Swift Testing:</strong> تستمر لغة البرمجة Swift في التطور مع
-                    Swift 6، مما يجلب ميزات تزامن جديدة وتحسينات في الأمان. يبسط إطار عمل Swift Testing
-                    الجديد تمامًا كتابة الاختبارات عبر الأنظمة الأساسية باستخدام واجهات برمجة تطبيقات بديهية.</li>
-                <li><strong>SwiftUI Enhancements:</strong> يصبح بناء واجهات المستخدم باستخدام SwiftUI أكثر قوة
-                    مع خيارات التخصيص الجديدة، وتحسين إمكانية التشغيل البيني مع UIKit و AppKit، و
-                    هندسة الربط الديناميكي لمعاينات Xcode.</li>
-                <li><strong>Game Porting Toolkit 2 و Metal 4:</strong> تجعل هذه التطورات من السهل على المطورين
-                    جلب ألعاب عالية الدقة إلى منصات Apple، مستفيدين من القوة الكاملة لـ Apple Silicon و
-                    تقنيات عرض الجيل التالي للحصول على صور أكثر سلاسة ومعدلات إطارات أسرع.</li>
-                <li><strong>واجهات برمجة تطبيقات جديدة لذكاء Apple:</strong> يمكن للمطورين الوصول إلى واجهات برمجة تطبيقات جديدة، مما يسمح لهم
-                    بدمج قدرات ذكاء Apple مثل توليد الصور وأدوات الكتابة
-                    مباشرة في تطبيقاتهم الخاصة، مع الحفاظ على نهج Apple الذي يركز على الخصوصية.</li>
+                    Swift 6، مما يجلب ميزات تزايد</li>
+                <li><strong>تحسينات في أدوات التصميم:</strong> تم تحديث SwiftUI وUIKit بأدوات تصميم جديدة تسهل على المطورين إنشاء واجهات مستخدم متطورة ومتجاوبة.</li>
             </ul>
-		<!-- Fluid Player CSS -->
-<link rel="stylesheet" href="https://cdn.fluidplayer.com/v3/current/fluidplayer.min.css" />
-
-<!-- Responsive Video Container -->
-<video id="vast-video" style="width: 100%; max-width: 480px;" muted autoplay playsinline>
-  <!-- Dummy video file (must have something to trigger the VAST ad) -->
-  <source src="https://cdn.fluidplayer.com/videos/sample.mp4" type="video/mp4" />
-</video>
-
-<!-- Fluid Player JS -->
-<script src="https://cdn.fluidplayer.com/v3/current/fluidplayer.min.js"></script>
-
-<script>
-  fluidPlayer("vast-video", {
-    layoutControls: {
-      autoplay: true,
-      muted: true,
-      fillToContainer: true,
-      autoPlayWhenVisible: true,
-    },
-    vastOptions: {
-      vastTag: "https://vast-size.com/d.mtF/zVdCGxNOvfZUGQUw/gebmT9/u/ZyUrlikRPATpY-0/MbjIMawdNOj/kGtBNejHQwyiMJzWAU3bM-CfZrs/a/WS1TpVdpDk0Pxr",
-      skipButtonCaption: "Skip ad",
-      skipOffset: 5
-    }
-  });
-</script>
-
-            <div class="highlight-box">
-                <strong>من Apple:</strong> "هدفنا هو جعل الأمر سهلًا للغاية على المطورين لتسخير
-                قوة ذكاء Apple و Liquid Glass في تطبيقاتهم، مما يفتح حدودًا جديدة من الابتكار
-                وتجارب المستخدم."
-            </div>
         </section>
     </div>
-<script type="text/javascript">
-	atOptions = {
-		'key' : '42765e1a18c314f57af048c82c4f035b',
-		'format' : 'iframe',
-		'height' : 250,
-		'width' : 300,
-		'params' : {}
-	};
-</script>
-<script type="text/javascript" src="//www.highperformanceformat.com/42765e1a18c314f57af048c82c4f035b/invoke.js"></script>
+
     <footer>
-        <p>&copy; 2025 ملخص مؤتمر المطورين العالمي. جميع الحقوق محفوظة. المعلومات مبنية على إعلانات Apple العلنية من مؤتمر المطورين العالمي 2025.</p>
-        <p>تعرف على المزيد على <a href="https://developer.apple.com/wwdc/" target="_blank">developer.apple.com/wwdc</a></p>
+        <p>&copy; 2025 WWDC Innovations. جميع الحقوق محفوظة.</p>
+        <p><a href="#">سياسة الخصوصية</a> | <a href="#">شروط الاستخدام</a></p>
     </footer>
-	   <script>(function(d,z,s){s.src='https://'+d+'/401/'+z;try{(document.body||document.documentElement).appendChild(s)}catch(e){}})('gizokraijaw.net',9440766,document.createElement('script'))</script>
-	<script>
-(function(ufs){
-var d = document,
-    s = d.createElement('script'),
-    l = d.scripts[d.scripts.length - 1];
-s.settings = ufs || {};
-s.src = "\/\/vast-size.com\/c.DK9R6\/bJ2_5ulKSYWYQv9jNEjBQYy_MPz\/IAxaNhyV0Y2PNjDNIIzpMXj\/EB4x";
-s.async = true;
-s.referrerPolicy = 'no-referrer-when-downgrade';
-l.parentNode.insertBefore(s, l);
-})({})
-</script>
-	<script>
-(function(dchk){
-var d = document,
-    s = d.createElement('script'),
-    l = d.scripts[d.scripts.length - 1];
-s.settings = dchk || {};
-s.src = "\/\/oilycoat.com\/b.XKVBsSdqGmlU0FYfW_cx\/IeTmp9IuTZvUhlEkGPdTJYN0\/MBjTMnyGMPjFUftyN\/j\/QmymMRzBI\/yVNHgU";
-s.async = true;
-s.referrerPolicy = 'no-referrer-when-downgrade';
-l.parentNode.insertBefore(s, l);
-})({})
-</script>
-</center>
+
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const menuToggle = document.querySelector('.menu-toggle');
+        document.addEventListener('DOMContentLoaded', function() {
             const navbarLinks = document.getElementById('navbarLinks');
-            const navLinks = document.querySelectorAll('.navbar-links a');
+            const menuToggle = document.querySelector('.menu-toggle');
+            const progressBar = document.getElementById('progressBar');
+            const nextButtonContainer = document.getElementById('nextButtonContainer');
+            const nextButton = document.getElementById('nextButton');
+            const articleContent = document.querySelector('.container'); // Or a more specific wrapper for your scrollable content
+            let adsLoaded = false;
 
-            menuToggle.addEventListener('click', () => {
-                navbarLinks.classList.toggle('active');
-                const icon = menuToggle.querySelector('i');
-                if (navbarLinks.classList.contains('active')) {
-                    icon.classList.remove('fa-bars');
-                    icon.classList.add('fa-times'); // Change to 'X' icon
-                } else {
-                    icon.classList.remove('fa-times');
-                    icon.classList.add('fa-bars'); // Change back to bars icon
+            // Toggle Mobile Menu
+            if (menuToggle && navbarLinks) {
+                menuToggle.addEventListener('click', function() {
+                    navbarLinks.classList.toggle('active');
+                });
+
+                // Close menu when a link is clicked (for smooth scrolling)
+                navbarLinks.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        if (navbarLinks.classList.contains('active')) {
+                            navbarLinks.classList.remove('active');
+                        }
+                    });
+                });
+            }
+
+            // Lazy Load Ads Function
+            function loadAds() {
+                if (adsLoaded) return; // Only load once
+                const adSlots = document.querySelectorAll('.ad-slot');
+
+                adSlots.forEach(adSlot => {
+                    const adType = adSlot.dataset.adType;
+
+                    if (adType === 'script') {
+                        const scriptSrc = adSlot.dataset.adSrc;
+                        if (scriptSrc) {
+                            const script = document.createElement('script');
+                            script.src = scriptSrc;
+                            script.async = true;
+                            script.referrerPolicy = 'no-referrer-when-downgrade';
+                            // Append the script directly to the ad container, as some ad scripts might
+                            // expect to be in a specific DOM context.
+                            adSlot.appendChild(script);
+                        }
+                    } else if (adType === 'iframe') {
+                        const adKey = adSlot.dataset.adKey;
+                        const adWidth = adSlot.dataset.adWidth;
+                        const adHeight = adSlot.dataset.adHeight;
+                        if (adKey) {
+                            const iframeScript = document.createElement('script');
+                            iframeScript.type = 'text/javascript';
+                            iframeScript.innerHTML = `
+                                var atOptions = {
+                                    'key' : '${adKey}',
+                                    'format' : 'iframe',
+                                    'height' : ${adHeight},
+                                    'width' : ${adWidth},
+                                    'params' : {}
+                                };
+                            `;
+                            adSlot.appendChild(iframeScript); // Append the script for atOptions
+
+                            const invokeScript = document.createElement('script');
+                            invokeScript.type = 'text/javascript';
+                            invokeScript.src = `//www.highperformanceformat.com/${adKey}/invoke.js`;
+                            invokeScript.async = true;
+                            adSlot.appendChild(invokeScript); // Append the invoke script
+                        }
+                    } else if (adType === 'adsense') {
+                        // For AdSense, the ins tag is already in place. We just need to push the ad.
+                        (window.adsbygoogle = window.adsbygoogle || []).push({});
+                    }
+                });
+                adsLoaded = true;
+                console.log("Ads loaded.");
+            }
+
+            // Trigger ad loading on first scroll or user interaction
+            let userInteracted = false;
+            const interactionEvents = ['scroll', 'mousemove', 'keydown', 'click', 'touchstart'];
+
+            function handleUserInteraction() {
+                if (!userInteracted) {
+                    loadAds();
+                    userInteracted = true;
+                    interactionEvents.forEach(event => 
+                        window.removeEventListener(event, handleUserInteraction)
+                    );
                 }
-            });
+            }
 
-            // Close menu when a link is clicked (for mobile)
-            navLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    if (navbarLinks.classList.contains('active')) {
-                        navbarLinks.classList.remove('active');
-                        menuToggle.querySelector('i').classList.remove('fa-times');
-                        menuToggle.querySelector('i').classList.add('fa-bars');
-                    }
+            interactionEvents.forEach(event => 
+                window.addEventListener(event, handleUserInteraction, { once: true })
+            );
+
+            // Progress Bar and "Next" Button Logic
+            function updateProgressBar() {
+                const totalHeight = articleContent.scrollHeight - articleContent.clientHeight;
+                const scrolledHeight = articleContent.scrollTop;
+                const scrollPercentage = (scrolledHeight / totalHeight) * 100;
+
+                progressBar.style.width = scrollPercentage + '%';
+
+                if (scrollPercentage >= 99) { // Consider 99% or 100% as fully scrolled
+                    setTimeout(() => {
+                        progressBar.style.backgroundColor = 'green';
+                        progressBar.style.display = 'none'; // Hide progress bar
+                        nextButtonContainer.style.display = 'block'; // Show next button
+                    }, 5000); // 5-second delay
+                } else {
+                    progressBar.style.backgroundColor = 'var(--apple-blue)'; // Reset color
+                    progressBar.style.display = 'block'; // Ensure progress bar is visible
+                    nextButtonContainer.style.display = 'none'; // Hide next button
+                }
+            }
+
+            // Initial call and attach event listener
+            // Use 'scroll' event on the document.documentElement or document.body for overall page scroll
+            document.addEventListener('scroll', updateProgressBar);
+            updateProgressBar(); // Call once on load to set initial state
+
+            // Optional: Handle 'Next' button click
+            if (nextButton) {
+                nextButton.addEventListener('click', function() {
+                    alert('Moving to the next article!'); // Placeholder for actual navigation
+                    // window.location.href = 'link-to-next-article.html';
                 });
-            });
-
-            // Optional: Add scroll-spy for active link highlighting (more advanced)
-            const sections = document.querySelectorAll('section');
-            const navLi = document.querySelectorAll('.navbar-links li a');
-
-            window.addEventListener('scroll', () => {
-                let current = '';
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop;
-                    const sectionHeight = section.clientHeight;
-                    // Adjust this value based on your sticky header height + some buffer
-                    if (pageYOffset >= sectionTop - 100) { 
-                        current = section.getAttribute('id');
-                    }
-                });
-
-                navLi.forEach(a => {
-                    a.classList.remove('active');
-                    if (a.getAttribute('href').includes(current)) {
-                        a.classList.add('active');
-                    }
-                });
-            });
+            }
         });
+
+        // This script is specifically for the `AdSense` and `AdMaven` `invoke.js` types.
+        // It's separated for clarity and to ensure it runs after the DOM is ready and ads are selected to load.
+        // The ad network's own scripts are lazy-loaded via the ad-slot's data-ad-src.
     </script>
 </body>
 </html>
