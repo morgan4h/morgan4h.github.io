@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مؤتمر المطورين العالمي 2025: تعمق في ابتكارات Apple الأخيرة</title>
-    <script type="text/javascript">
+    <title>مؤتمر المطورين العالمي 2025: ابتكارات Apple - تحديثات رئيسية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<script type="text/javascript">
 	atOptions = {
 		'key' : 'e557ef1b9815f0bd75b5d78ef15c7b05',
 		'format' : 'iframe',
@@ -33,18 +34,19 @@
             padding: 0;
             background-color: var(--apple-light-gray);
             color: var(--apple-dark-gray);
-            line-height: 1.8; /* Increased for better readability in Arabic */
+            line-height: 1.8;
             scroll-behavior: smooth;
-            text-align: right; /* Default text alignment for RTL */
+            text-align: right;
+            direction: rtl; /* Ensures proper RTL layout */
         }
 
+        /* Header and Navigation */
         header {
             background-color: var(--apple-dark-gray);
             color: white;
             padding: 30px 0;
             text-align: center;
-            position: sticky;
-            top: 0;
+            position: relative; /* Changed from sticky to relative for better mobile handling with a separate sticky nav */
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
         }
@@ -61,39 +63,58 @@
             color: var(--apple-gray);
         }
 
-        nav {
+        .navbar {
             background-color: var(--apple-dark-gray);
-            padding: 10px 0;
+            padding: 10px 20px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
         }
 
-        nav ul {
+        .navbar .logo {
+            font-weight: 700;
+            font-size: 1.5em;
+            color: white;
+            text-decoration: none;
+        }
+
+        .navbar-links {
             list-style: none;
             padding: 0;
             margin: 0;
             display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
+            gap: 20px;
         }
 
-        nav ul li {
-            margin: 0 15px;
-        }
-
-        nav ul li a {
+        .navbar-links li a {
             color: white;
             text-decoration: none;
             font-weight: 600;
-            padding: 5px 0;
+            padding: 8px 0;
             transition: color 0.3s ease, border-bottom 0.3s ease;
         }
 
-        nav ul li a:hover {
+        .navbar-links li a:hover {
             color: var(--apple-blue);
             border-bottom: 2px solid var(--apple-blue);
         }
 
+        .menu-toggle {
+            display: none; /* Hidden on desktop */
+            background: none;
+            border: none;
+            font-size: 1.8em;
+            color: white;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        /* Container & Sections */
         .container {
             max-width: 1000px;
             margin: 40px auto;
@@ -107,6 +128,8 @@
             border-radius: 12px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative; /* For scroll-spy active states */
+            scroll-margin-top: 80px; /* Offset for sticky header */
         }
 
         section:hover {
@@ -156,7 +179,7 @@
             padding: 20px;
             margin-top: 25px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-            text-align: right; /* Ensure text inside is RTL */
+            text-align: right;
         }
 
         .highlight-box strong {
@@ -181,6 +204,7 @@
             transform: scale(1.03);
         }
 
+        /* Footer */
         footer {
             text-align: center;
             padding: 30px 0;
@@ -206,12 +230,49 @@
                 font-size: 2.5em;
             }
 
-            nav ul {
-                flex-direction: column;
+            .navbar {
+                flex-wrap: wrap;
+                justify-content: space-between;
+                padding: 10px 15px;
             }
 
-            nav ul li {
+            .navbar-links {
+                display: none; /* Hide on mobile by default */
+                flex-direction: column;
+                width: 100%;
+                background-color: var(--apple-dark-gray);
+                padding: 10px 0;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+                position: absolute;
+                top: 100%; /* Position below navbar */
+                left: 0;
+                right: 0;
+                z-index: 998;
+            }
+
+            .navbar-links.active {
+                display: flex; /* Show when active */
+            }
+
+            .navbar-links li {
                 margin: 5px 0;
+                text-align: center;
+                width: 100%;
+            }
+            
+            .navbar-links li a {
+                display: block;
+                padding: 10px 0;
+                width: 100%;
+            }
+
+            .menu-toggle {
+                display: block; /* Show hamburger on mobile */
+            }
+
+            .container {
+                margin: 20px auto;
+                padding: 0 15px;
             }
 
             section {
@@ -220,7 +281,9 @@
 
             section h2 {
                 font-size: 1.8em;
-                display: block; /* Make the border bottom span full width on mobile */
+                display: block;
+                width: 100%;
+                text-align: right;
             }
 
             section h3 {
@@ -231,10 +294,6 @@
         @media (max-width: 480px) {
             header h1 {
                 font-size: 2em;
-            }
-            .container {
-                margin: 20px auto;
-                padding: 0 15px;
             }
             section {
                 padding: 20px;
@@ -248,8 +307,12 @@
         <p>الكشف عن مستقبل البرمجيات وتجربة المستخدم</p>
     </header>
 
-    <nav>
-        <ul>
+    <nav class="navbar">
+        <a href="#introduction" class="logo">WWDC 2025</a>
+        <button class="menu-toggle" aria-label="Toggle navigation">
+            <i class="fas fa-bars"></i>
+        </button>
+        <ul class="navbar-links" id="navbarLinks">
             <li><a href="#introduction">مقدمة</a></li>
             <li><a href="#apple-intelligence">ذكاء Apple</a></li>
             <li><a href="#liquid-glass">تصميم Liquid Glass</a></li>
@@ -257,7 +320,7 @@
             <li><a href="#ipados-26">iPadOS 26</a></li>
             <li><a href="#macos-tahoe-26">macOS Tahoe 26</a></li>
             <li><a href="#watchos-26">watchOS 26</a></li>
-            <li><a href="#carplay-updates">CarPlay والمنزل</a></li>
+            <li><a href="#carplay-home">CarPlay والمنزل</a></li>
             <li><a href="#visionos-2">visionOS 2</a></li>
             <li><a href="#developer-tools">أدوات المطورين</a></li>
         </ul>
@@ -265,7 +328,7 @@
 
     <div class="container">
         <section id="introduction">
-            <h2>مؤتمر المطورين العالمي 2025: لمحة عن الغد</h2>
+            <h2>مقدمة: مؤتمر المطورين العالمي 2025</h2>
             <p>
                 مؤتمر المطورين العالمي 2025، الذي أقيم في الفترة من 9 إلى 13 يونيو، كان مرة أخرى الحدث الأبرز لشركة Apple لعرض
                 التقدم البرمجي الرائد وأدوات المطورين. الكلمة الرئيسية لهذا العام، بقيادة تيم كوك والمديرين التنفيذيين
@@ -281,7 +344,7 @@
         </section>
 
         <section id="apple-intelligence">
-            <h2>ذكاء Apple: تشغيل تجربة شخصية</h2>
+            <h2>ذكاء Apple: تجربة شخصية وقوية</h2>
             <p>
                 كان الكشف الأكبر في مؤتمر المطورين العالمي 2025 بلا شك الإطلاق الرسمي لـ <strong>ذكاء Apple</strong>.
                 يمثل نظام الذكاء الشخصي هذا، المدمج بعمق عبر iOS و iPadOS و macOS،
@@ -344,7 +407,7 @@
         </section>
 
         <section id="ios-26">
-            <h2>iOS 26: أكثر شخصية، أكثر ذكاءً، وأكثر قوة</h2>
+            <h2>iOS 26: شخصية، ذكية، وقوية</h2>
             <p>
                 الجيل التالي من نظام تشغيل iPhone، والذي يحمل الآن رسميًا اسم <strong>iOS 26</strong> (مع الانتقال إلى
                 نظام تسمية قائم على السنة)، يجلب تحسينات كبيرة تركز على التخصيص، والتواصل،
@@ -373,7 +436,7 @@
         </section>
 
         <section id="ipados-26">
-            <h2>iPadOS 26: قفزة نحو الإنتاجية الاحترافية</h2>
+            <h2>iPadOS 26: نحو إنتاجية احترافية</h2>
             <p>
                 يواصل <strong>iPadOS 26</strong> طمس الخطوط الفاصلة بين الجهاز اللوحي والكمبيوتر المحمول، ويقدم ميزات تعزز بشكل كبير
                 المهام المتعددة، والإبداع، وتجربة المحترفين بشكل عام.
@@ -397,7 +460,7 @@
         </section>
 
         <section id="macos-tahoe-26">
-            <h2>macOS Tahoe 26: استمرارية سلسة وذكاء معزز</h2>
+            <h2>macOS Tahoe 26: استمرارية وذكاء معززان</h2>
             <p>
                 يحصل نظام تشغيل سطح المكتب من Apple على تسميته السنوية الجديدة: <strong>macOS Tahoe 26</strong>. يركز هذا التحديث على
                 تعزيز ميزات الاستمرارية، وتطوير Spotlight بشكل كبير، وجلب قوة ذكاء Apple
@@ -407,7 +470,7 @@
             <ul>
                 <li><strong>النسخ المتطابق للآيفون (iPhone Mirroring):</strong> ميزة استمرارية رائدة تتيح الوصول الكامل والتحكم
                     في جهاز iPhone الخاص بك مباشرة من جهاز Mac الخاص بك. يتم إعادة توجيه الإشعارات والصوت بسلاسة
-                    إلى جهاز Mac، ويمكنك حتى سحب الملفات وإفلاتها بين الأجهزة. يعمل النسخ المتطابق حتى عندما يكون iPhone
+                    إلى جهاز Mac، ويمكنك حتى سحب الملفات وإسقاطها بين الأجهزة. يعمل النسخ المتطابق حتى عندما يكون iPhone
                     مقفلًا.</li>
                 <li><strong>إصلاح شامل لـ Spotlight:</strong> يصبح Spotlight أكثر ذكاءً بشكل ملحوظ، ويدعم
                     التصفية المتقدمة، والمفاتيح السريعة، ومئات الإجراءات المباشرة. يمكن للمستخدمين الآن تنفيذ مهام مثل
@@ -428,7 +491,7 @@
         </section>
 
         <section id="watchos-26">
-            <h2>watchOS 26: رؤى صحية أعمق وتخصيص</h2>
+            <h2>watchOS 26: صحة وتخصيص أعمق</h2>
             <p>
                 يقدم نظام تشغيل Apple Watch، <strong>watchOS 26</strong>، رؤى قوية للصحة واللياقة البدنية،
                 بالإضافة إلى خيارات تخصيص محسنة.
@@ -451,7 +514,7 @@
             </ul>
         </section>
 
-        <section id="carplay-updates">
+        <section id="carplay-home">
             <h2>CarPlay والمنزل: اتصال أذكى</h2>
             <p>
                 واصلت Apple توسيع وجودها في السيارة والمنزل، مقدمة تحديثات مهمة لـ CarPlay
@@ -493,7 +556,7 @@
         </section>
 
         <section id="developer-tools">
-            <h2>تمكين المطورين: Xcode وما بعده</h2>
+            <h2>أدوات المطورين: تمكين الابتكار</h2>
             <p>
                 مؤتمر المطورين العالمي هو، في جوهره، للمطورين. كشفت Apple عن مجموعة من التحديثات القوية لأدواتها
                 وإطارات عملها للمطورين، مما يجعل بناء تطبيقات مبتكرة لمنصاتها أسهل من أي وقت مضى.
@@ -506,7 +569,7 @@
                 <li><strong>Swift 6 و Swift Testing:</strong> تستمر لغة البرمجة Swift في التطور مع
                     Swift 6، مما يجلب ميزات تزامن جديدة وتحسينات في الأمان. يبسط إطار عمل Swift Testing
                     الجديد تمامًا كتابة الاختبارات عبر الأنظمة الأساسية باستخدام واجهات برمجة تطبيقات بديهية.</li>
-                <li><strong>تحسينات SwiftUI:</strong> يصبح بناء واجهات المستخدم باستخدام SwiftUI أكثر قوة
+                <li><strong>SwiftUI Enhancements:</strong> يصبح بناء واجهات المستخدم باستخدام SwiftUI أكثر قوة
                     مع خيارات التخصيص الجديدة، وتحسين إمكانية التشغيل البيني مع UIKit و AppKit، و
                     هندسة الربط الديناميكي لمعاينات Xcode.</li>
                 <li><strong>Game Porting Toolkit 2 و Metal 4:</strong> تجعل هذه التطورات من السهل على المطورين
@@ -528,5 +591,59 @@
         <p>&copy; 2025 ملخص مؤتمر المطورين العالمي. جميع الحقوق محفوظة. المعلومات مبنية على إعلانات Apple العلنية من مؤتمر المطورين العالمي 2025.</p>
         <p>تعرف على المزيد على <a href="https://developer.apple.com/wwdc/" target="_blank">developer.apple.com/wwdc</a></p>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navbarLinks = document.getElementById('navbarLinks');
+            const navLinks = document.querySelectorAll('.navbar-links a');
+
+            menuToggle.addEventListener('click', () => {
+                navbarLinks.classList.toggle('active');
+                const icon = menuToggle.querySelector('i');
+                if (navbarLinks.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times'); // Change to 'X' icon
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars'); // Change back to bars icon
+                }
+            });
+
+            // Close menu when a link is clicked (for mobile)
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (navbarLinks.classList.contains('active')) {
+                        navbarLinks.classList.remove('active');
+                        menuToggle.querySelector('i').classList.remove('fa-times');
+                        menuToggle.querySelector('i').classList.add('fa-bars');
+                    }
+                });
+            });
+
+            // Optional: Add scroll-spy for active link highlighting (more advanced)
+            const sections = document.querySelectorAll('section');
+            const navLi = document.querySelectorAll('.navbar-links li a');
+
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    // Adjust this value based on your sticky header height + some buffer
+                    if (pageYOffset >= sectionTop - 100) { 
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLi.forEach(a => {
+                    a.classList.remove('active');
+                    if (a.getAttribute('href').includes(current)) {
+                        a.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
