@@ -8,7 +8,7 @@
     <meta name='admaven-placement' content=BqdUFqjC8>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5278045911736030"
       crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Bz52W8K/rM5oD+jD/e9t4aQd2s1J7k3y4k5D8q4P2w0B9R2m9k9z4y9a4Y8f4f4a3d4f4e4c4d4e4f4g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Bz52W8K/rM5oD+jD/e9t4aQd2s1J7k3y4k5D8q4P2w0B9R2m9k9z4y9a4Y8f4f4e4c4d4e4f4g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap');
         
@@ -20,6 +20,8 @@
             --apple-dark-gray: #1d1d1f;
             --liquid-glass-gradient: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.05));
             --liquid-glass-backdrop: rgba(255, 255, 255, 0.1);
+            --navbar-height-desktop: 60px; /* Approximate height of your navbar */
+            --navbar-height-mobile: 50px; /* Approximate height of your mobile navbar */
         }
 
         body {
@@ -34,29 +36,7 @@
             direction: rtl; /* Ensures proper RTL layout */
         }
 
-        /* Header and Navigation */
-        header {
-            background-color: var(--apple-dark-gray);
-            color: white;
-            padding: 30px 0;
-            text-align: center;
-            position: relative;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-        }
-
-        header h1 {
-            margin: 0;
-            font-size: 3em;
-            letter-spacing: -0.02em;
-        }
-
-        header p {
-            font-size: 1.2em;
-            margin-top: 10px;
-            color: var(--apple-gray);
-        }
-
+        /* Navigation */
         .navbar {
             background-color: var(--apple-dark-gray);
             padding: 10px 20px;
@@ -66,6 +46,8 @@
             align-items: center;
             position: sticky;
             top: 0;
+            width: 100%; /* Ensure it spans full width */
+            box-sizing: border-box; /* Include padding in width calculation */
             z-index: 999;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
         }
@@ -114,9 +96,9 @@
             height: 5px;
             background: #ccc;
             position: sticky;
-            top: 60px; /* Adjust based on navbar height */
+            /* Adjust top dynamically based on navbar height */
+            top: var(--navbar-height-desktop); 
             z-index: 990;
-            margin-top: -5px; /* Overlap with navbar if needed */
         }
 
         .progress-bar {
@@ -164,7 +146,7 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             position: relative;
-            scroll-margin-top: 80px;
+            scroll-margin-top: 80px; /* Offset for sticky header and progress bar */
         }
 
         section:hover {
@@ -239,6 +221,29 @@
             transform: scale(1.03);
         }
 
+        /* Video Container for Responsiveness */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            background: #000;
+            margin-top: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .video-container iframe,
+        .video-container object,
+        .video-container embed {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
         /* Ad Styling for Professional Display */
         .ad-container {
             margin: 30px auto; /* Increased margin for better spacing */
@@ -255,7 +260,7 @@
         /* Specific adjustments for video frames if any, usually handled by ad network */
         .ad-container iframe {
             max-width: 100%;
-            height: auto; /* Maintain aspect ratio */
+            height: auto; /* Maintain aspect ratio for ad iframes, if they're not fixed height */
             display: block; /* Remove extra space below iframe */
             margin: 0 auto; /* Center the iframe if smaller than max-width */
         }
@@ -282,10 +287,6 @@
 
         /* Responsive Design */
         @media (max-width: 768px) {
-            header h1 {
-                font-size: 2.5em;
-            }
-
             .navbar {
                 flex-wrap: wrap;
                 justify-content: space-between;
@@ -347,14 +348,11 @@
             }
 
             .progress-container {
-                top: 50px; /* Adjust for smaller mobile nav bar height */
+                top: var(--navbar-height-mobile); /* Adjusted for mobile navbar height */
             }
         }
 
         @media (max-width: 480px) {
-            header h1 {
-                font-size: 2em;
-            }
             section {
                 padding: 20px;
             }
@@ -362,11 +360,6 @@
     </style>
 </head>
 <body>
-    <header>
-        <h1>مؤتمر المطورين العالمي 2025</h1>
-        <p>ابتكارات Apple وتحديثات رئيسية</p>
-    </header>
-
     <nav class="navbar">
         <a href="#introduction" class="logo">WWDC 2025</a>
         <button class="menu-toggle" aria-label="Toggle navigation">
@@ -688,6 +681,18 @@
                 بالنسبة لـ Apple Vision Pro، يبني <strong>visionOS 2</strong> على أساسه الرائد، ويقدم طرقًا جديدة
                 للتفاعل مع المحتوى المكاني ويعزز التجربة الغامرة.
             </p>
+            <div class="video-container">
+                <iframe
+                    src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+            <p style="margin-top: 15px;">
+                شاهد هذا الفيديو التجريبي لترى كيف يمكن للمشاهد المكانية تغيير تجربتك.
+            </p>
+
             <h3>ابتكارات visionOS 2:</h3>
             <ul>
                 <li><strong>الصور المكانية مع الذكاء الاصطناعي التوليدي:</strong> تم تحسين القدرة على تحويل الصور ثنائية الأبعاد إلى صور
@@ -738,8 +743,10 @@
             const progressBar = document.getElementById('progressBar');
             const nextButtonContainer = document.getElementById('nextButtonContainer');
             const nextButton = document.getElementById('nextButton');
-            const articleContent = document.querySelector('.container'); // Or a more specific wrapper for your scrollable content
+            // Select a more encompassing element for the content area that contains your scrollable text
+            const scrollableContent = document.querySelector('.container'); 
             let adsLoaded = false;
+            let progressBarCompleted = false; // Track progress bar state
 
             // Toggle Mobile Menu
             if (menuToggle && navbarLinks) {
@@ -772,8 +779,6 @@
                             script.src = scriptSrc;
                             script.async = true;
                             script.referrerPolicy = 'no-referrer-when-downgrade';
-                            // Append the script directly to the ad container, as some ad scripts might
-                            // expect to be in a specific DOM context.
                             adSlot.appendChild(script);
                         }
                     } else if (adType === 'iframe') {
@@ -781,6 +786,8 @@
                         const adWidth = adSlot.dataset.adWidth;
                         const adHeight = adSlot.dataset.adHeight;
                         if (adKey) {
+                            // Clear existing content to prevent multiple loads if re-triggered
+                            adSlot.innerHTML = ''; 
                             const iframeScript = document.createElement('script');
                             iframeScript.type = 'text/javascript';
                             iframeScript.innerHTML = `
@@ -792,17 +799,21 @@
                                     'params' : {}
                                 };
                             `;
-                            adSlot.appendChild(iframeScript); // Append the script for atOptions
+                            adSlot.appendChild(iframeScript);
 
                             const invokeScript = document.createElement('script');
                             invokeScript.type = 'text/javascript';
                             invokeScript.src = `//www.highperformanceformat.com/${adKey}/invoke.js`;
                             invokeScript.async = true;
-                            adSlot.appendChild(invokeScript); // Append the invoke script
+                            adSlot.appendChild(invokeScript);
                         }
                     } else if (adType === 'adsense') {
                         // For AdSense, the ins tag is already in place. We just need to push the ad.
-                        (window.adsbygoogle = window.adsbygoogle || []).push({});
+                        // Ensure the ins tag is within the adSlot for proper AdSense rendering
+                        const insTag = adSlot.querySelector('.adsbygoogle');
+                        if (insTag) {
+                            (window.adsbygoogle = window.adsbygoogle || []).push({});
+                        }
                     }
                 });
                 adsLoaded = true;
@@ -817,54 +828,78 @@
                 if (!userInteracted) {
                     loadAds();
                     userInteracted = true;
+                    // Remove listeners after first interaction
                     interactionEvents.forEach(event => 
                         window.removeEventListener(event, handleUserInteraction)
                     );
                 }
             }
 
+            // Add listeners for initial interaction
             interactionEvents.forEach(event => 
                 window.addEventListener(event, handleUserInteraction, { once: true })
             );
 
             // Progress Bar and "Next" Button Logic
             function updateProgressBar() {
-                const totalHeight = articleContent.scrollHeight - articleContent.clientHeight;
-                const scrolledHeight = articleContent.scrollTop;
-                const scrollPercentage = (scrolledHeight / totalHeight) * 100;
+                // Total scrollable height of the document
+                const fullHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                // Current scroll position
+                const scrolledDistance = document.documentElement.scrollTop;
 
+                let scrollPercentage = 0;
+                if (fullHeight > 0) {
+                    scrollPercentage = (scrolledDistance / fullHeight) * 100;
+                }
+                
                 progressBar.style.width = scrollPercentage + '%';
 
-                if (scrollPercentage >= 99) { // Consider 99% or 100% as fully scrolled
+                if (scrollPercentage >= 99 && !progressBarCompleted) { // Consider 99% or 100% as fully scrolled
+                    progressBarCompleted = true; // Mark as completed
                     setTimeout(() => {
                         progressBar.style.backgroundColor = 'green';
                         progressBar.style.display = 'none'; // Hide progress bar
                         nextButtonContainer.style.display = 'block'; // Show next button
                     }, 5000); // 5-second delay
-                } else {
+                } else if (scrollPercentage < 99 && progressBarCompleted) {
+                    // If scrolled back up after completing, reset state
+                    progressBarCompleted = false;
                     progressBar.style.backgroundColor = 'var(--apple-blue)'; // Reset color
                     progressBar.style.display = 'block'; // Ensure progress bar is visible
                     nextButtonContainer.style.display = 'none'; // Hide next button
+                } else if (scrollPercentage < 99) {
+                    progressBar.style.backgroundColor = 'var(--apple-blue)'; // Keep blue if not completed
+                    progressBar.style.display = 'block';
+                    nextButtonContainer.style.display = 'none';
                 }
             }
 
-            // Initial call and attach event listener
-            // Use 'scroll' event on the document.documentElement or document.body for overall page scroll
-            document.addEventListener('scroll', updateProgressBar);
+            // Listen to scroll events on the window
+            window.addEventListener('scroll', updateProgressBar);
             updateProgressBar(); // Call once on load to set initial state
 
             // Optional: Handle 'Next' button click
             if (nextButton) {
                 nextButton.addEventListener('click', function() {
                     alert('Moving to the next article!'); // Placeholder for actual navigation
-                    // window.location.href = 'link-to-next-article.html';
+                    // window.location.href = 'link-to-next-article.html'; // Uncomment and replace with actual link
                 });
             }
-        });
 
-        // This script is specifically for the `AdSense` and `AdMaven` `invoke.js` types.
-        // It's separated for clarity and to ensure it runs after the DOM is ready and ads are selected to load.
-        // The ad network's own scripts are lazy-loaded via the ad-slot's data-ad-src.
+            // Dynamic adjustment of progress bar top based on navbar height
+            // This is a simple approximation. For more robust solution, use ResizeObserver or measure after render.
+            function adjustProgressBarTop() {
+                const navbar = document.querySelector('.navbar');
+                if (navbar) {
+                    const navbarHeight = navbar.offsetHeight;
+                    document.documentElement.style.setProperty('--navbar-height-desktop', `${navbarHeight}px`);
+                    document.documentElement.style.setProperty('--navbar-height-mobile', `${navbarHeight}px`); // Use the same for mobile if it adjusts itself
+                }
+            }
+            // Run on initial load and resize
+            adjustProgressBarTop();
+            window.addEventListener('resize', adjustProgressBarTop);
+        });
     </script>
 </body>
 </html>
