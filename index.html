@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ملخص مؤتمر المطورين العالمي 2025: ثورة الذكاء الاصطناعي وLiquid Glass</title>
     <meta name="description" content="اكتشف أبرز إعلانات مؤتمر المطورين العالمي 2025 من Apple: الكشف عن Apple Intelligence، لغة تصميم Liquid Glass الجديدة، تحديثات iOS 26، iPadOS 26، macOS Tahoe 26، watchOS 26، و visionOS 2.">
-    <meta name="keywords" content="WWDC 2025, Apple Intelligence, Liquid Glass, iOS 26, iPadOS 26, macOS Tahoe 26, watchOS 26, visionOS 2, Apple, AI, مؤتمر المطورين العالمي 2025, ذكاء Apple, ليكويد جلاس, ابل">
+    <meta name="keywords" content="WWDC 2025, Apple Intelligence, Liquid Glass, iOS 26, iPadOS 26, macOS Tahoe 26, watchOS 26, visionOS 2, Apple, AI, مؤتمر المطورين العالمي 2025, ذكاء Apple, ليكويد جلاس, ابل, GPT-3, Gemini 2.5, Claude, الذكاء الاصطناعي">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;700&display=swap">
     <style>
         :root {
@@ -68,6 +68,7 @@
             font-weight: bold;
             color: #fff;
             text-decoration: none;
+            flex-shrink: 0; /* Prevent logo from shrinking */
         }
 
         .menu-toggle {
@@ -75,6 +76,7 @@
             flex-direction: column;
             cursor: pointer;
             padding: 5px;
+            z-index: 1001; /* Ensure toggle is above links when active */
         }
 
         .menu-toggle .bar {
@@ -90,6 +92,7 @@
             display: flex;
             margin: 0;
             padding: 0;
+            transition: all 0.3s ease-in-out;
         }
 
         .navbar-links li {
@@ -138,12 +141,32 @@
             border-radius: 25px;
             text-decoration: none;
             font-weight: bold;
-            transition: background-color 0.3s ease, transform 0.2s ease;
+            transition: background-color 0.3s ease, transform 0.2s ease, opacity 0.3s ease;
+            border: none;
+            cursor: pointer;
         }
 
         .btn-primary:hover {
             background-color: var(--apple-dark-blue);
             transform: translateY(-2px);
+        }
+
+        .btn-primary:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+            transform: none;
+            opacity: 0.7;
+        }
+
+        /* Pulse animation for final button */
+        .pulse-animation {
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(0, 122, 255, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(0, 122, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 122, 255, 0); }
         }
 
         /* --- Main Content Sections --- */
@@ -153,6 +176,18 @@
             margin-bottom: 20px;
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            opacity: 0; /* Initially hidden with opacity */
+            transform: translateY(20px); /* Slight lift effect */
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        
+        .article-section.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .article-section.hidden-section {
+            display: none; /* Only apply display: none when truly hidden */
         }
 
         .article-section h2 {
@@ -198,13 +233,17 @@
             color: var(--text-color);
         }
 
-        /* --- Call to Action / Next Button --- */
+        /* --- Call to Action / Next Button Section --- */
         .cta-section {
             text-align: center;
             padding: 40px 20px;
             background-color: var(--light-gray);
             border-radius: 8px;
             margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
         }
 
         .cta-section h2 {
@@ -249,18 +288,6 @@
             transition: width 0.1s ease-out, background-color 0.3s ease;
         }
 
-        /* --- Hidden Sections --- */
-        .hidden-section {
-            display: none;
-            opacity: 0;
-            transition: opacity 0.5s ease-in-out;
-        }
-
-        .hidden-section.revealed {
-            display: block; /* Change from none to block */
-            opacity: 1;
-        }
-
         /* --- Modal Styles --- */
         .modal {
             display: none;
@@ -288,7 +315,7 @@
             margin: auto;
             padding: 30px;
             border-radius: 10px;
-            width: 80%;
+            width: 90%; /* Wider for mobile */
             max-width: 500px;
             text-align: center;
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
@@ -316,6 +343,7 @@
             display: flex;
             justify-content: center;
             gap: 15px;
+            flex-wrap: wrap; /* Allow buttons to wrap on small screens */
         }
 
         .modal-buttons button {
@@ -348,7 +376,7 @@
             transform: translateY(-2px);
         }
 
-        /* --- Loading Spinner --- */
+        /* --- Loading Spinner / Waiting Bar --- */
         .loading-spinner {
             display: none; /* Hidden by default */
             border: 4px solid #f3f3f3; /* Light grey */
@@ -364,16 +392,11 @@
             display: block;
         }
 
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* --- Ad Slot Styling (Optional, for visual placeholders) --- */
+        /* Ad Slot Styling (Optional, for visual placeholders) */
         .ad-slot {
             min-height: 100px; /* Give some visual space */
-            background-color: #f0f0f0;
-            border: 1px dashed #ccc;
+            background-color: #f9f9f9;
+            border: 1px dashed #e0e0e0;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -382,12 +405,15 @@
             color: #888;
             text-align: center;
             padding: 10px;
+            overflow: hidden; /* Hide potential overflow from ad content */
         }
 
         /* --- Responsive Design --- */
         @media (max-width: 768px) {
             .navbar {
                 flex-wrap: wrap;
+                justify-content: space-between;
+                align-items: center;
             }
 
             .menu-toggle {
@@ -397,9 +423,14 @@
             .navbar-links {
                 flex-direction: column;
                 width: 100%;
-                display: none;
-                margin-top: 10px;
-                text-align: center;
+                display: none; /* Hidden by default on mobile */
+                background-color: var(--apple-blue); /* Same as header for seamless look */
+                position: absolute;
+                top: var(--navbar-height-mobile); /* Position below the header */
+                left: 0;
+                right: 0;
+                padding: 10px 0;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.2);
             }
 
             .navbar-links.active {
@@ -408,6 +439,11 @@
 
             .navbar-links li {
                 margin: 10px 0;
+            }
+
+            .navbar-links a {
+                padding: 10px 0; /* Larger touch area */
+                display: block; /* Make the whole area clickable */
             }
 
             .hero {
@@ -437,6 +473,24 @@
             #progressBarContainer {
                 top: var(--navbar-height-mobile); /* Adjust for mobile navbar */
             }
+
+            .modal-content {
+                width: 95%; /* Even wider on very small screens */
+                padding: 20px;
+            }
+
+            .modal-content h3 {
+                font-size: 1.5em;
+            }
+
+            .modal-content p {
+                font-size: 1em;
+            }
+
+            .modal-buttons button {
+                width: 100%; /* Full width buttons */
+                margin-bottom: 10px; /* Space between stacked buttons */
+            }
         }
     </style>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_ADSENSE_ID" crossorigin="anonymous"></script>
@@ -444,7 +498,7 @@
 <body>
     <header>
         <nav class="navbar">
-            <a href="#" class="logo">مؤتمر Apple 2025</a>
+            <a href="#" class="logo">مستقبل الذكاء الاصطناعي</a>
             <div class="menu-toggle">
                 <span class="bar"></span>
                 <span class="bar"></span>
@@ -452,12 +506,11 @@
             </div>
             <ul class="navbar-links" id="navbarLinks">
                 <li><a href="#hero-section">الرئيسية</a></li>
-                <li><a href="#apple-intelligence-section">ذكاء Apple</a></li>
-                <li><a href="#liquid-glass-section">Liquid Glass</a></li>
-                <li><a href="#os-updates-section">تحديثات الأنظمة</a></li>
-                <li><a href="#google-pro-2-5" class="ai-nav-link">Google Pro 2.5</a></li>
-                <li><a href="#deep-thinking-cleo" class="ai-nav-link">Deep Thinking Cleo</a></li>
-                <li><a href="#gpt-3-new-gen" class="ai-nav-link">GPT-3 New Gen</a></li>
+                <li><a href="#wwdc-2025-section">مؤتمر Apple 2025</a></li>
+                <li><a href="#gpt-3-new-gen" class="ai-nav-link">GPT-3 الجيل الجديد</a></li>
+                <li><a href="#google-gemini-2-5" class="ai-nav-link">جوجل Gemini 2.5</a></li>
+                <li><a href="#claude-ai-evolution" class="ai-nav-link">تطور Claude AI</a></li>
+                <li><a href="#future-ai-challenges" class="ai-nav-link">تحديات الذكاء الاصطناعي</a></li>
             </ul>
         </nav>
     </header>
@@ -467,116 +520,139 @@
     </div>
 
     <main class="container">
-        <section id="hero-section" class="hero">
-            <h1>ملخص مؤتمر المطورين العالمي 2025: ثورة الذكاء الاصطناعي وLiquid Glass</h1>
-            <p>كان مؤتمر WWDC 2025 نقطة تحول حقيقية، حيث كشفت Apple عن رؤيتها المستقبلية التي تجمع بين الابتكار البرمجي والتصميم الثوري والذكاء الاصطناعي المتطور.</p>
-            <button id="nextButton" class="btn-primary">تابع القراءة: اكتشف ابتكارات الذكاء الاصطناعي</button>
+        <section id="hero-section" class="hero article-section revealed">
+            <h1>ملخص شامل لابتكارات الذكاء الاصطناعي ومؤتمر WWDC 2025</h1>
+            <p>انطلق معنا في رحلة استكشاف لأحدث ثورات الذكاء الاصطناعي وتصريحات مؤتمر المطورين العالمي من Apple لعام 2025. عالم يتشكل بفضل العقول الاصطناعية!</p>
+            <button id="nextButtonTop" class="btn-primary">ابدأ الاستكشاف: اكتشف ابتكارات Apple والذكاء الاصطناعي</button>
         </section>
 
-        <section id="apple-intelligence-section" class="article-section">
-            <h2>Apple Intelligence: الذكاء الاصطناعي المتكامل</h2>
+        <div class="ad-slot" data-ad-type="adsense">
+            <ins class="adsbygoogle"
+                 style="display:block; text-align:center;"
+                 data-ad-layout="in-article"
+                 data-ad-format="fluid"
+                 data-ad-client="ca-pub-YOUR_ADSENSE_ID"
+                 data-ad-slot="YOUR_ADSENSE_SLOT_ID_1"></ins>
+        </div>
+
+        <section id="wwdc-2025-section" class="article-section hidden-section">
+            <h2>مؤتمر Apple WWDC 2025: عودة للابتكار بذكاء</h2>
+            <p>كان مؤتمر WWDC 2025 نقطة تحول حقيقية، حيث كشفت Apple عن رؤيتها المستقبلية التي تجمع بين الابتكار البرمجي والتصميم الثوري والذكاء الاصطناعي المتطور. لم يقتصر الأمر على مجرد تحديثات، بل كانت إعادة تعريف لتجربة المستخدم بأكملها.</p>
+            <h3>Apple Intelligence: الذكاء الاصطناعي المتكامل</h3>
             <p>كان الإعلان الأكبر هو **Apple Intelligence**، وهو نظام ذكاء اصطناعي عميق ومدمج في صميم أنظمة Apple البيئية. يهدف هذا النظام إلى جعل التفاعلات اليومية أكثر سهولة وذكاءً وتخصيصًا، مع الحفاظ على الخصوصية كأولوية قصوى.</p>
-            <h3>الميزات الرئيسية لـ Apple Intelligence:</h3>
             <ul>
                 <li>**مساعد Siri الجيل الجديد:** أصبح Siri أكثر قدرة على فهم السياق، وإجراء محادثات طبيعية، وتنفيذ مهام معقدة عبر تطبيقات متعددة. يمكنه الآن إدارة جداولك الزمنية، تلخيص رسائل البريد الإلكتروني، وحتى اقتراح الردود بذكاء.</li>
                 <li>**الكتابة الذكية والمساعدة الإبداعية:** في تطبيقات مثل Pages وMail، تقدم Apple Intelligence اقتراحات كتابة متقدمة، وتساعد في صياغة النصوص، وتلخيص المستندات الطويلة، وحتى إنشاء محتوى إبداعي بناءً على توجيهات المستخدم.</li>
-                <li>**تحسينات الصور والفيديو:** قدرات معززة لتعديل الصور والفيديو، بما في ذلك إزالة الكائنات غير المرغوب فيها بذكاء، وتحسين الإضاءة بشكل تلقائي، وإنشاء مقاطع فيديو مميزة من ذكرياتك.</li>
-                <li>**الخصوصية والأمان:** أكدت Apple على أن معالجة البيانات تتم غالبًا على الجهاز للحفاظ على خصوصية المستخدم، ومع المهام التي تتطلب قوة حوسبة أكبر، يتم استخدام "الحوسبة السحابية الخاصة" لضمان أقصى درجات الأمان.</li>
             </ul>
-            <div class="highlight-box">
-                "Apple Intelligence ليست مجرد مجموعة من الميزات؛ إنها إعادة تعريف لكيفية تفاعلنا مع أجهزتنا، مما يجعلها أكثر قوة وبديهية من أي وقت مضى."
-            </div>
-            <div class="ad-slot" data-ad-type="adsense">
-                <ins class="adsbygoogle"
-                     style="display:block; text-align:center;"
-                     data-ad-layout="in-article"
-                     data-ad-format="fluid"
-                     data-ad-client="ca-pub-YOUR_ADSENSE_ID"
-                     data-ad-slot="YOUR_ADSENSE_SLOT_ID_1"></ins>
-            </div>
-        </section>
-
-        <section id="liquid-glass-section" class="article-section">
-            <h2>Liquid Glass: لغة تصميم ثورية</h2>
+            <h3>Liquid Glass: لغة تصميم ثورية</h3>
             <p>قدمت Apple لغة تصميم جديدة تمامًا أطلقت عليها اسم **Liquid Glass**. تتجاوز هذه اللغة مجرد الواجهة المرئية لتمتد إلى كيفية إحساسنا وتفاعلنا مع أجهزتنا. إنها تجمع بين الشفافية، الانسيابية، والتفاعل اللمسي لتقديم تجربة مستخدم غامرة.</p>
-            <h3>خصائص Liquid Glass:</h3>
             <ul>
-                <li>**واجهات شفافة ومتكيفة:** العناصر المرئية تتغير وتتكيف بذكاء مع المحتوى والوضع، مما يخلق إحساسًا بالعمق والسوائل. الأيقونات والنوافذ قد تظهر شبه شفافة، مما يسمح للمحتوى الموجود خلفها بالظهور بشكل جمالي.</li>
-                <li>**ردود فعل لمسية متقدمة:** تم تعزيز محرك Taptic Engine لتقديم ردود فعل لمسية أكثر دقة وواقعية، مما يجعل التفاعل مع الواجهة يبدو طبيعيًا وملموسًا بشكل لم يسبق له مثيل.</li>
-                <li>**رسوم متحركة انسيابية وواقعية:** كل حركة، من فتح تطبيق إلى التمرير عبر قائمة، تتميز بانسيابية لا مثيل لها، محاكاةً لحركة السوائل.</li>
-                <li>**تكامل مع الواقع المعزز (AR):** تفتح Liquid Glass الباب أمام تجارب واقع معزز أكثر اندماجًا وطبيعية، حيث يمكن للعناصر الافتراضية أن تتفاعل بشكل أكثر واقعية مع البيئة الحقيقية.</li>
+                <li>**واجهات شفافة ومتكيفة:** العناصر المرئية تتغير وتتكيف بذكاء مع المحتوى والوضع، مما يخلق إحساسًا بالعمق والسوائل.</li>
+                <li>**ردود فعل لمسية متقدمة:** تم تعزيز محرك Taptic Engine لتقديم ردود فعل لمسية أكثر دقة وواقعية.</li>
             </ul>
             <div class="highlight-box">
-                "Liquid Glass ليست مجرد جمالية؛ إنها فلسفة تصميم تهدف إلى جعل التكنولوجيا غير مرئية تقريبًا، مع التركيز على المحتوى والتفاعل البشري."
+                "Apple لم تكن أبدًا فقط عن التكنولوجيا، بل عن كيفية دمج هذه التكنولوجيا بسلاسة في حياتنا. WWDC 2025 كان الدليل القاطع على ذلك."
             </div>
-        </section>
-
-        <section id="os-updates-section" class="article-section">
-            <h2>تحديثات أنظمة التشغيل الرئيسية</h2>
-            <p>كما هو متوقع، أعلنت Apple عن تحديثات رئيسية لجميع أنظمة تشغيلها، والتي تستفيد بشكل كبير من Apple Intelligence وLiquid Glass.</p>
-            <h3>أبرز التحديثات:</h3>
-            <ul>
-                <li>**iOS 26 وiPadOS 26:** تجربة مستخدم معاد تصميمها بالكامل مع Liquid Glass، أدوات تحكم محسّنة بالخصوصية، وميزات Apple Intelligence متكاملة في جميع التطبيقات الأساسية. iPadOS 26 يعزز تعدد المهام بشكل لم يسبق له مثيل، مع دعم أفضل للشاشات الخارجية ووضع سطح المكتب المحسن.</li>
-                <li>**macOS Tahoe 26:** يقدم macOS Tahoe 26 تحسينات في الأداء والأمان، بالإضافة إلى تكامل أعمق مع Apple Intelligence. تم تحسين تطبيقات الإنتاجية مثل Keynote وNumbers وPages بشكل كبير لزيادة الكفاءة.</li>
-                <li>**watchOS 26:** يركز على صحة المستخدم ولياقته البدنية، مع ميزات تتبع صحية جديدة مدعومة بالذكاء الاصطناعي، وواجهات ساعة جديدة تستفيد من Liquid Glass.</li>
-                <li>**visionOS 2:** يقدم تحسينات كبيرة لتجربة الواقع المختلط على Apple Vision Pro، مع أدوات مطورين جديدة وميزات تتبع حركة العين واليد أكثر دقة.</li>
-            </ul>
-            <div class="highlight-box">
-                "مع هذه التحديثات، تؤكد Apple التزامها بتقديم تجربة متكاملة وسلسة عبر جميع أجهزتها، مدفوعة بالابتكار والذكاء."
-            </div>
-            <div class="ad-slot" data-ad-type="iframe" data-ad-key="YOUR_ADMAVEN_IFRAME_KEY_2" data-ad-width="300" data-ad-height="250">
+             <div class="ad-slot" data-ad-type="iframe" data-ad-key="YOUR_ADMAVEN_IFRAME_URL_OR_KEY_2" data-ad-width="300" data-ad-height="250">
                 </div>
-        </section>
-
-        <section id="google-pro-2-5" class="article-section hidden-section">
-            <h2>Google Pro 2.5: العملاق الجديد في عالم الذكاء الاصطناعي</h2>
-            <p>في خطوة مفاجئة، أعلنت Google عن نسخة مطورة من نموذجها اللغوي الكبير، **Google Pro 2.5**. يأتي هذا النموذج بقدرات غير مسبوقة في الفهم والتوليد، مع تركيز خاص على التفكير المنطقي والإبداع متعدد الوسائط. يُقال إنه يقدم قفزة نوعية في قدرة الذكاء الاصطناعي على التعامل مع البيانات المعقدة وإنشاء محتوى أصلي.</p>
-            <p>أبرز ما يميز Google Pro 2.5 هو قدرته على فهم ودمج المعلومات من مصادر متعددة (نصوص، صور، فيديو، صوت) بسلاسة غير موجودة في النماذج السابقة. هذا يفتح الباب أمام تطبيقات جديدة كليًا في البحث، إنشاء المحتوى، وحتى التفاعل مع العالم المادي عبر الروبوتات.</p>
-            <div class="ad-slot" data-ad-type="script" data-ad-src="https://example.com/some-ad-script.js">
-                </div>
-        </section>
-
-        <section id="deep-thinking-cleo" class="article-section hidden-section">
-            <h2>Deep Thinking Cleo: المساعد الشخصي الثوري</h2>
-            <p>تم الكشف عن **Cleo**، المساعد الشخصي المدعوم بالذكاء الاصطناعي من شركة ناشئة غامضة تُدعى "Cognito AI". ما يميز Cleo هو تركيزها على "التفكير العميق" والقدرة على استنتاج النوايا المعقدة للمستخدم، وتوقع الاحتياجات، وتقديم حلول استباقية. إنها ليست مجرد مساعد يجيب على الأسئلة، بل تتصرف كمدير شخصي ذكي يتعلم ويتكيف مع عاداتك.</p>
-            <p>تشمل قدرات Cleo إدارة المهام المعقدة، التخطيط لرحلات السفر مع مراعاة أدق التفاصيل، وحتى تقديم نصائح استثمارية بسيطة بناءً على أهدافك المالية، كل ذلك مع واجهة صوتية وطبيعية بشكل لا يصدق.</p>
-            <div class="ad-slot" data-ad-type="iframe" data-ad-key="https://ad.doubleclick.net/ddm/adj/N902.138765.ADGROUP/B1234567.8;sz=300x250;ord=[timestamp];" data-ad-width="300" data-ad-height="250">
-                 </div>
         </section>
 
         <section id="gpt-3-new-gen" class="article-section hidden-section">
-            <h2>GPT-3 New Gen: تطور جديد في توليد اللغة</h2>
-            <p>OpenAI لم تكن بعيدة عن المنافسة، حيث قدمت **GPT-3 New Gen**، الجيل الجديد من نموذجها اللغوي الشهير. يركز هذا الإصدار على تحسينات هائلة في الاتساق المنطقي، وتقليل "الهلوسات" (الأخطاء الواقعية)، وزيادة القدرة على توليد نصوص طويلة ومعقدة مع الحفاظ على الأسلوب والنبرة. يُعد هذا النموذج قفزة كبيرة نحو الذكاء الاصطناعي القادر على الكتابة بطلاقة وإقناع كالبشر.</p>
-            <p>كما تم تحسين قدرات GPT-3 New Gen على البرمجة، مما يجعله أداة لا غنى عنها للمطورين، بالإضافة إلى تطبيقاته في إنشاء المحتوى، الترجمة المتقدمة، والتعليم المخصص.</p>
+            <h2>GPT-3 الجيل الجديد: إنجازات غير مسبوقة في توليد اللغة</h2>
+            <p>منذ إطلاقه، أحدث GPT-3 ثورة في مجال معالجة اللغة الطبيعية. والآن، مع إطلاق "GPT-3 الجيل الجديد"، تقدم OpenAI قفزة نوعية في قدرات النماذج اللغوية الكبيرة. هذا الإصدار الجديد لا يقتصر على تحسين جودة النصوص المولدة، بل يعالج أيضاً التحديات الرئيسية المتعلقة بالاتساق، وتوليد المعلومات الخاطئة، والقدرة على التعامل مع السياقات الطويلة والمعقدة.</p>
+            <h3>الميزات المحسنة:</h3>
+            <ul>
+                <li>**فهم سياقي أعمق:** قدرة فائقة على فهم الفروقات الدقيقة في اللغة، والنوايا الكامنة وراء الاستفسارات، مما يؤدي إلى استجابات أكثر دقة وملاءمة.</li>
+                <li>**تقليل "الهلوسات" (Hallucinations):** معالجة مشكلة توليد المعلومات غير الصحيحة أو الخيالية، مما يجعل النموذج أكثر موثوقية في التطبيقات الواقعية.</li>
+                <li>**توليد محتوى طويل ومتماسك:** قدرة محسّنة على إنتاج مقالات، تقارير، وحتى فصول كتب كاملة مع الحفاظ على المنطق والتدفق السردي.</li>
+                <li>**الاستجابة لتعليمات المستخدم بشكل أفضل:** فهم دقيق للتعليمات المعقدة والمتعددة الأوجه، مما يتيح للمطورين بناء تطبيقات أكثر قوة وتخصيصاً.</li>
+            </ul>
+            <p>يُعد GPT-3 الجيل الجديد حجر الزاوية لتطبيقات الذكاء الاصطناعي المستقبلية في مجالات مثل الصحافة، التعليم، خدمة العملاء، وحتى الفنون الإبداعية، حيث يمكنه أن يكون شريكاً مبتكراً للمبدعين والمحترفين.</p>
+            <div class="ad-slot" data-ad-type="script" data-ad-src="https://example.com/some-third-party-ad-script.js">
+                </div>
+        </section>
+
+        <section id="google-gemini-2-5" class="article-section hidden-section">
+            <h2>جوجل Gemini 2.5: عصر الذكاء الاصطناعي متعدد الأنماط</h2>
+            <p>مع إطلاق Gemini 2.5، تعزز جوجل مكانتها كرائدة في مجال الذكاء الاصطناعي متعدد الأنماط (Multimodal AI). لا يقتصر هذا النموذج على معالجة النصوص والصور بشكل منفصل، بل يدمج الفهم عبر وسائط متعددة في آن واحد، مما يسمح له بتفسير العلاقات المعقدة بين البيانات المرئية والنصية والصوتية.</p>
+            <h3>تطبيقات Gemini 2.5 الثورية:</h3>
+            <ul>
+                <li>**البحث البصري والمحادثاتي:** يمكنك الآن تحميل صورة أو فيديو وطرح أسئلة حول محتواها بلغة طبيعية، وسيقوم Gemini بتقديم إجابات دقيقة بناءً على التحليل المتكامل.</li>
+                <li>**تحليل البيانات المعقدة:** قدرته على استيعاب كميات هائلة من البيانات المتنوعة (مثل التقارير المالية مع الرسوم البيانية، أو سجلات المرضى مع صور الأشعة) وتحليلها لاستخلاص رؤى عميقة.</li>
+                <li>**توليد المحتوى الإبداعي متعدد الوسائط:** إنشاء عروض تقديمية كاملة تتضمن نصوصاً، وصوراً، ومقاطع فيديو قصيرة بناءً على وصف بسيط.</li>
+                <li>**التفاعل البشري الطبيعي:** تطوير واجهات مستخدم أكثر سهولة وبديهية، حيث يمكن للذكاء الاصطناعي فهم تعابير الوجه، نبرة الصوت، وإيماءات الجسم لتكييف استجابته.</li>
+            </ul>
+            <div class="highlight-box">
+                "Gemini 2.5 ليس مجرد نموذج لغوي؛ إنه شريك رقمي يمكنه رؤية وسماع وفهم العالم من حولنا بنفس الطريقة التي يفعلها البشر تقريباً."
+            </div>
             <div class="ad-slot" data-ad-type="adsense">
                 <ins class="adsbygoogle"
                      style="display:block; text-align:center;"
                      data-ad-layout="in-article"
                      data-ad-format="fluid"
                      data-ad-client="ca-pub-YOUR_ADSENSE_ID"
-                     data-ad-slot="YOUR_ADSENSE_SLOT_ID_2"></ins>
+                     data-ad-slot="YOUR_ADSENSE_SLOT_ID_3"></ins>
             </div>
         </section>
 
+        <section id="claude-ai-evolution" class="article-section hidden-section">
+            <h2>تطور Claude AI: التركيز على السلامة والفهم السياقي العميق</h2>
+            <p>في عالم يتسارع فيه تطور الذكاء الاصطناعي، تبرز Anthropic بنموذجها Claude AI، الذي يركز بشكل أساسي على السلامة، والموثوقية، والفهم السياقي العميق. بينما تتسابق النماذج الأخرى على الحجم الخام والقدرة، يفضل Claude تقديم تجربة أكثر أمانًا، مع إعطاء الأولوية للحد من الأضرار وتجنب توليد المحتوى غير المرغوب فيه.</p>
+            <h3>نقاط قوة Claude AI:</h3>
+            <ul>
+                <li>**"الدستورية" والتوجهات الأخلاقية:** تم تصميم Claude بناءً على مبادئ "الذكاء الاصطناعي الدستوري"، مما يضمن اتباعه لمجموعة من القواعد والمبادئ الأخلاقية الصارمة في جميع استجاباته.</li>
+                <li>**التعامل مع السياقات الطويلة:** قدرة غير مسبوقة على معالجة وفهم وثائق وسجلات طويلة جدًا، مما يجعله مثالياً لتطبيقات تتطلب تحليلًا معمقًا للنصوص القانونية، أو الأدبيات العلمية، أو المحادثات الممتدة.</li>
+                <li>**المحادثات الطبيعية والمتماسكة:** يُعرف Claude بقدرته على الحفاظ على خيط المحادثة وتقديم استجابات متماسكة ومنطقية عبر جولات متعددة من التفاعل.</li>
+                <li>**المساعدة في اتخاذ القرار:** بفضل فهمه العميق وتركيزه على السلامة، يمكن لـ Claude تقديم ملخصات ومعلومات منظمة لمساعدة المستخدمين في اتخاذ قرارات مستنيرة.</li>
+            </ul>
+            <div class="highlight-box">
+                "Claude ليس فقط ذكيًا، بل هو ذكاء اصطناعي يمكن الوثوق به. هذه سمة حاسمة لمستقبل تفاعلنا مع التكنولوجيا."
+            </div>
+            <div class="ad-slot" data-ad-type="iframe" data-ad-key="YOUR_ADMAVEN_IFRAME_URL_OR_KEY_4" data-ad-width="300" data-ad-height="250">
+                </div>
+        </section>
+
+        <section id="future-ai-challenges" class="article-section hidden-section">
+            <h2>تحديات ومستقبل الذكاء الاصطناعي</h2>
+            <p>مع كل هذه الابتكارات المذهلة، يواجه مجال الذكاء الاصطناعي تحديات كبيرة تتطلب تفكيرًا عميقًا وتعاونًا عالميًا. إن التطور السريع للذكاء الاصطناعي يطرح أسئلة حول الأخلاق، الخصوصية، الأمن الوظيفي، وحتى مستقبل الوجود البشري.</p>
+            <h3>أبرز التحديات:</h3>
+            <ul>
+                <li>**التحيز والخوارزميات العادلة:** ضمان أن نماذج الذكاء الاصطناعي لا تعكس أو تضخم التحيزات الموجودة في البيانات التي تدربت عليها.</li>
+                <li>**الأمان والتحكم:** تطوير آليات قوية لضمان أن أنظمة الذكاء الاصطناعي القوية تظل تحت سيطرة البشر ولا تتصرف بطرق غير مقصودة أو ضارة.</li>
+                <li>**التأثير على سوق العمل:** التكيف مع التغيرات التي سيحدثها الذكاء الاصطناعي في الوظائف، والتركيز على إعادة تأهيل القوى العاملة.</li>
+                <li>**الخصوصية وحماية البيانات:** مع جمع المزيد من البيانات لتدريب النماذج، يصبح ضمان خصوصية المستخدم وأمان بياناته أمرًا بالغ الأهمية.</li>
+            </ul>
+            <p>المستقبل يحمل إمكانيات لا حصر لها للذكاء الاصطناعي، من تسريع الاكتشافات العلمية إلى تخصيص التعليم والرعاية الصحية. ولكن تحقيق هذا المستقبل يتطلب منا معالجة هذه التحديات بجدية ومسؤولية.</p>
+            <div class="ad-slot" data-ad-type="adsense">
+                <ins class="adsbygoogle"
+                     style="display:block; text-align:center;"
+                     data-ad-layout="in-article"
+                     data-ad-format="fluid"
+                     data-ad-client="ca-pub-YOUR_ADSENSE_ID"
+                     data-ad-slot="YOUR_ADSENSE_SLOT_ID_4"></ins>
+            </div>
+        </section>
+
+
         <section class="cta-section">
-            <button id="nextButtonBottom" class="btn-primary">تابع القراءة: اكتشف ابتكارات الذكاء الاصطناعي</button>
+            <button id="nextButtonBottom" class="btn-primary">اكتشف المزيد من ابتكارات الذكاء الاصطناعي</button>
             <div class="loading-spinner" id="sectionLoadingSpinner"></div>
             <p id="progressFeedback" style="margin-top: 15px; font-weight: bold; color: var(--apple-blue);">
-                اقرأ المزيد لفتح الأقسام السرية للذكاء الاصطناعي...
+                اضغط على الزر أعلاه لفتح القسم التالي من المقال...
             </p>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2025 ملخص مؤتمر WWDC. جميع الحقوق محفوظة.</p>
+        <p>&copy; 2025 مقال الذكاء الاصطناعي. جميع الحقوق محفوظة.</p>
     </footer>
 
     <div id="nextArticleModal" class="modal">
         <div class="modal-content">
             <h3>تهانينا!</h3>
-            <p>لقد أكملت قراءة المقال. هل ترغب في الانتقال إلى المقال التالي أو البقاء هنا؟</p>
+            <p>لقد أكملت قراءة جميع الأقسام. هل ترغب في المطالبة بهديتك؟</p>
             <div class="modal-buttons">
-                <button id="modalGoButton" class="go-button">اذهب إلى المقال التالي</button>
+                <button id="modalGoButton" class="go-button">اذهب للرابط الخاص بك!</button>
                 <button id="modalStayButton" class="stay-button">ابقَ في المقال</button>
             </div>
         </div>
@@ -590,17 +666,17 @@
             const nextArticleModal = document.getElementById('nextArticleModal');
             const modalGoButton = document.getElementById('modalGoButton');
             const modalStayButton = document.getElementById('modalStayButton');
-            const nextButton = document.getElementById('nextButton'); // Top button
-            const nextButtonBottom = document.getElementById('nextButtonBottom'); // Bottom button
+            const nextButtonTop = document.getElementById('nextButtonTop');
+            const nextButtonBottom = document.getElementById('nextButtonBottom');
             const aiNavLinks = document.querySelectorAll('.ai-nav-link');
             const sectionLoadingSpinner = document.getElementById('sectionLoadingSpinner');
             const progressFeedback = document.getElementById('progressFeedback');
 
-
-            // Define the IDs of the new AI sections
-            const aiSectionsIds = ['google-pro-2-5', 'deep-thinking-cleo', 'gpt-3-new-gen'];
+            // Define the IDs of the sections to be revealed sequentially
+            // Note: WWDC is now included in this sequence as it's the first "unlockable" major topic.
+            const sequentialSectionsIds = ['wwdc-2025-section', 'gpt-3-new-gen', 'google-gemini-2-5', 'claude-ai-evolution', 'future-ai-challenges'];
             
-            let revealedAiSectionsCount = 0; // Tracks how many AI sections have been revealed
+            let revealedSectionsCount = 0; // Tracks how many sections have been revealed
             let adsLoaded = false;
             let interactionObserved = false; // Track if any user interaction occurred for lazy loading ads
             const SECTION_REVEAL_DELAY = 3000; // 3 seconds delay for revealing sections
@@ -622,7 +698,7 @@
 
             // Lazy Load Ads Function
             function loadAds() {
-                if (adsLoaded) return;
+                if (adsLoaded) return; // Ensure ads are loaded only once initially
                 const adSlots = document.querySelectorAll('.ad-slot');
 
                 adSlots.forEach(adSlot => {
@@ -636,6 +712,7 @@
                             script.async = true;
                             script.referrerPolicy = 'no-referrer-when-downgrade';
                             adSlot.appendChild(script);
+                            console.log(`Loaded script ad: ${scriptSrc}`);
                         }
                     } else if (adType === 'iframe') {
                         const adKey = adSlot.dataset.adKey;
@@ -653,6 +730,7 @@
                                 iframe.allowFullscreen = true;
                                 iframe.sandbox = 'allow-scripts allow-same-origin allow-popups allow-forms'; // Recommended for iframe ads
                                 adSlot.appendChild(iframe);
+                                console.log(`Loaded direct iframe ad: ${adKey}`);
                             } else { // Assume it's an AdMaven key for their script to dynamically inject iframe
                                 const iframeContainerId = `container-${adKey}-${Math.random().toString(36).substr(2, 9)}`; // Generate unique ID for container
                                 adSlot.innerHTML = `<div id="${iframeContainerId}"></div>`;
@@ -670,17 +748,19 @@
                                     document.getElementById('${iframeContainerId}').innerHTML = '<scr' + 'ipt type="text/javascript" src="//www.highperformanceformat.com/${adKey}/invoke.js"></scr' + 'ipt>';
                                 `;
                                 adSlot.appendChild(atOptionsScript);
+                                console.log(`Loaded AdMaven iframe ad via script: ${adKey}`);
                             }
                         }
                     } else if (adType === 'adsense') {
                         const insTag = adSlot.querySelector('.adsbygoogle');
                         if (insTag) {
                             (window.adsbygoogle = window.adsbygoogle || []).push({});
+                            console.log('Loaded AdSense ad.');
                         }
                     }
                 });
-                adsLoaded = true;
-                console.log("Ads loaded.");
+                adsLoaded = true; // Mark as loaded after the initial pass
+                console.log("Ads loading triggered.");
             }
 
             // Trigger ad loading on first user interaction (scroll, mousemove, keydown, click, touchstart)
@@ -689,14 +769,16 @@
                 if (!interactionObserved) {
                     loadAds();
                     interactionObserved = true;
+                    // Remove listeners after first interaction
                     interactionEvents.forEach(event => window.removeEventListener(event, handleFirstInteraction));
+                    console.log('First user interaction observed, initial ads loaded.');
                 }
             }
             interactionEvents.forEach(event => window.addEventListener(event, handleFirstInteraction, { once: true }));
 
 
-            // Hide all AI sections and their nav links on load
-            aiSectionsIds.forEach(id => {
+            // Hide all sequential sections and their nav links on load (except the first 'hero' which is always visible)
+            sequentialSectionsIds.forEach(id => {
                 const section = document.getElementById(id);
                 if (section) section.classList.add('hidden-section');
             });
@@ -705,9 +787,7 @@
 
             // Progress Bar Update
             function updateProgressBar() {
-                // Total scrollable height of the document
                 const fullHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-                // How far the user has scrolled from the top
                 const scrolledDistance = document.documentElement.scrollTop;
 
                 let scrollPercentage = 0;
@@ -718,8 +798,8 @@
                 progressBar.style.width = scrollPercentage + '%';
 
                 // Change progress bar color based on overall completion
-                // It turns green only when all AI sections are revealed AND the user has scrolled to the end of the total content
-                if (scrollPercentage >= 99 && revealedAiSectionsCount === aiSectionsIds.length) {
+                // It turns green only when all sequential sections are revealed AND the user has scrolled to the end of the total content
+                if (scrollPercentage >= 99 && revealedSectionsCount === sequentialSectionsIds.length) {
                     progressBar.style.backgroundColor = 'green';
                 } else {
                     progressBar.style.backgroundColor = 'var(--apple-blue)';
@@ -731,22 +811,22 @@
 
             // Function to update the "Next" buttons and feedback text
             function updateNextButtonState() {
-                if (revealedAiSectionsCount === aiSectionsIds.length) {
+                if (revealedSectionsCount === sequentialSectionsIds.length) {
                     const buttonText = 'أنهيت المقال! احصل على هديتك!';
-                    nextButton.textContent = buttonText;
+                    nextButtonTop.textContent = buttonText;
                     nextButtonBottom.textContent = buttonText;
-                    nextButton.classList.add('pulse-animation'); // Add animation for final state
+                    nextButtonTop.classList.add('pulse-animation'); // Add animation for final state
                     nextButtonBottom.classList.add('pulse-animation');
-                    progressFeedback.textContent = 'تهانينا! لقد فتحت جميع الأقسام. اضغط على الزر للحصول على هديتك!';
+                    progressFeedback.textContent = 'تهانينا! لقد فتحت جميع الأقسام السرية. اضغط على الزر للحصول على هديتك!';
                     progressBar.style.backgroundColor = 'green'; // Immediately green if all sections revealed
                 } else {
-                    const sectionsRemaining = aiSectionsIds.length - revealedAiSectionsCount;
-                    const buttonText = `تابع القراءة: اكتشف (${revealedAiSectionsCount + 1} من ${aiSectionsIds.length}) من ابتكارات الذكاء الاصطناعي`;
-                    nextButton.textContent = buttonText;
+                    const sectionsToUnlock = sequentialSectionsIds.length - revealedSectionsCount;
+                    const buttonText = `تابع القراءة: افتح القسم (${revealedSectionsCount + 1} من ${sequentialSectionsIds.length}) من المقال`;
+                    nextButtonTop.textContent = buttonText;
                     nextButtonBottom.textContent = buttonText;
-                    nextButton.classList.remove('pulse-animation'); // Remove animation
+                    nextButtonTop.classList.remove('pulse-animation'); // Remove animation
                     nextButtonBottom.classList.remove('pulse-animation');
-                    progressFeedback.textContent = `تبقى لك ${sectionsRemaining} قسم لفتحه. استمر في القراءة!`;
+                    progressFeedback.textContent = `متبقي لك ${sectionsToUnlock} قسم لتفتحه. استمر في القراءة لفتح المزيد!`;
                     progressBar.style.backgroundColor = 'var(--apple-blue)'; // Reset color if not all revealed
                 }
             }
@@ -754,55 +834,78 @@
 
             // Handle "Next" button click for sequential content revelation
             function handleNextButtonClick() {
-                if (revealedAiSectionsCount < aiSectionsIds.length) {
+                if (revealedSectionsCount < sequentialSectionsIds.length) {
                     // Disable buttons and show spinner during delay
-                    nextButton.disabled = true;
+                    nextButtonTop.disabled = true;
                     nextButtonBottom.disabled = true;
                     sectionLoadingSpinner.classList.add('active');
-                    progressFeedback.textContent = 'جارٍ تحميل القسم التالي... يرجى الانتظار!';
+                    progressFeedback.textContent = 'جارٍ تحميل القسم التالي... يرجى الانتظار للمحتوى والإعلانات!';
+
+                    // Load ads again just before revealing new content, ensures new ad slots are considered
+                    loadAds(); 
 
                     setTimeout(() => {
-                        // Reveal the next AI section
-                        const sectionIdToReveal = aiSectionsIds[revealedAiSectionsCount];
+                        // Reveal the next section
+                        const sectionIdToReveal = sequentialSectionsIds[revealedSectionsCount];
                         const sectionToReveal = document.getElementById(sectionIdToReveal);
                         if (sectionToReveal) {
                             sectionToReveal.classList.remove('hidden-section');
                             sectionToReveal.classList.add('revealed'); // Add revealed class for fade-in effect
+                            
                             // Also show its corresponding nav link
-                            if (aiNavLinks[revealedAiSectionsCount]) {
-                                aiNavLinks[revealedAiSectionsCount].style.display = 'block';
+                            if (aiNavLinks[revealedSectionsCount]) { // aiNavLinks corresponds to sequentialSectionsIds
+                                aiNavLinks[revealedSectionsCount].style.display = 'block';
                             }
-                            sectionToReveal.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                            revealedAiSectionsCount++;
+                            
+                            // Scroll slightly above the newly revealed section for better context
+                            const offset = navbarLinks.offsetHeight + progressBar.offsetHeight + 20; // Navbar + progress bar height + small margin
+                            window.scrollTo({
+                                top: sectionToReveal.offsetTop - offset,
+                                behavior: 'smooth'
+                            });
+                            
+                            revealedSectionsCount++;
                             updateProgressBar(); // Recalculate and update progress bar after revealing new content
                             updateNextButtonState(); // Update button text and feedback
                             
                             // Re-enable buttons and hide spinner
-                            nextButton.disabled = false;
+                            nextButtonTop.disabled = false;
                             nextButtonBottom.disabled = false;
                             sectionLoadingSpinner.classList.remove('active');
+                            console.log(`Section ${sectionIdToReveal} revealed.`);
+
+                            // Trigger an additional ad load for new ad slots if needed, or if adsense was not pushed properly.
+                            // This specifically re-pushes any .adsbygoogle elements within the newly revealed section.
+                            const newlyRevealedAdsenseSlots = sectionToReveal.querySelectorAll('.ad-slot[data-ad-type="adsense"] .adsbygoogle');
+                            newlyRevealedAdsenseSlots.forEach(insTag => {
+                                (window.adsbygoogle = window.adsbygoogle || []).push({});
+                                console.log('Re-pushed AdSense for newly revealed section.');
+                            });
+
                         }
                     }, SECTION_REVEAL_DELAY);
                 } else {
-                    // All AI sections have been revealed and clicked through, now show the final win modal
+                    // All sections have been revealed and clicked through, now show the final win modal
                     nextArticleModal.classList.add('show');
                     document.querySelector('#nextArticleModal h3').textContent = 'تهانينا، لقد أنهيت المقال!';
-                    document.querySelector('#nextArticleModal p').textContent = 'لقد أكملت قراءة جميع الأقسام. هل ترغب في المطالبة بهديتك؟';
-                    modalGoButton.textContent = 'اذهب للرابط الخاص بك!';
+                    document.querySelector('#nextArticleModal p').textContent = 'لقد أكملت قراءة جميع الأقسام السرية. هل ترغب في المطالبة بهديتك الآن؟';
+                    modalGoButton.textContent = 'نعم! اذهب إلى الهدية!';
                     // Change the "Go" button's action to the final winning link
                     modalGoButton.onclick = function() {
                         window.location.href = 'https://bot-sofai-4h.rf.gd/api/freefire/i.php';
                     };
-                    modalStayButton.textContent = 'ابقَ في المقال';
+                    modalStayButton.textContent = 'لا، ابقَ في المقال';
+                    console.log('All sections revealed, showing final modal.');
                 }
             }
 
-            nextButton.addEventListener('click', handleNextButtonClick);
+            nextButtonTop.addEventListener('click', handleNextButtonClick);
             nextButtonBottom.addEventListener('click', handleNextButtonClick);
 
             // Modal Stay button logic (closes the modal without navigating)
             modalStayButton.addEventListener('click', function() {
                 nextArticleModal.classList.remove('show');
+                console.log('Modal closed, user chose to stay.');
             });
 
             // Dynamic adjustment of progress bar top based on navbar height for sticky positioning
@@ -812,6 +915,13 @@
                     const navbarHeight = navbar.offsetHeight;
                     document.documentElement.style.setProperty('--navbar-height-desktop', `${navbarHeight}px`);
                     document.documentElement.style.setProperty('--navbar-height-mobile', `${navbarHeight}px`);
+                    // Update progress bar position immediately
+                    const progressBarContainer = document.getElementById('progressBarContainer');
+                    if (window.innerWidth <= 768) { // Assuming 768px is the breakpoint for mobile
+                        progressBarContainer.style.top = `${navbarHeight}px`;
+                    } else {
+                        progressBarContainer.style.top = `${navbarHeight}px`;
+                    }
                 }
             }
             
