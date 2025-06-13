@@ -4,16 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>مؤتمر المطورين العالمي 2025: ابتكارات Apple - تحديثات رئيسية</title>
+    <!-- Google AdSense Account ID - Keep this in head as per Google's recommendation -->
     <meta name="google-adsense-account" content="ca-pub-5278045911736030">
+    <!-- AdMaven Placement - Consider lazy loading this if it's a heavy script -->
     <meta name='admaven-placement' content=BqdUFqjC8>
+    <!-- Main AdSense script - Google recommends async loading in head -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5278045911736030"
-      crossorigin="anonymous"></script>
-    <script src="https://fpyf8.com/88/tag.min.js" data-zone="152045" async data-cfasync="false"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Bz52W8K/rM5oD+jD/e9t4aQd2s1J7k3y4k5D8q4P2w0B9R2m9k9z4y9a4Y8f4f4e4c4d4e4f4g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        crossorigin="anonymous"></script>
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" xintegrity="sha512-Bz52W8K/rM5oD+jD/e9t4aQd2s1J7k3y4k5D8q4P2w0B9R2m9k9z4y9a4Y8f4f4g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
     <style>
+        /* Import Google Fonts - Cairo for RTL, Helvetica/Arial as fallbacks */
         @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap');
         
+        /* CSS Variables for Apple-like theme */
         :root {
             --apple-blue: #007AFF;
             --apple-dark-blue: #0056b3;
@@ -26,6 +32,7 @@
             --navbar-height-mobile: 50px; /* Approximate height of your mobile navbar */
         }
 
+        /* Basic body styling */
         body {
             font-family: 'Cairo', 'Helvetica Neue', Helvetica, Arial, sans-serif;
             margin: 0;
@@ -38,7 +45,7 @@
             direction: rtl; /* Ensures proper RTL layout */
         }
 
-        /* Navigation */
+        /* Navigation Bar Styling */
         .navbar {
             background-color: var(--apple-dark-gray);
             padding: 10px 20px;
@@ -49,8 +56,8 @@
             position: sticky;
             top: 0;
             width: 100%;
-            box-sizing: border-box;
-            z-index: 999;
+            box-sizing: border-box; /* Include padding in width */
+            z-index: 999; /* Ensure it stays on top */
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
         }
 
@@ -83,7 +90,7 @@
         }
 
         .menu-toggle {
-            display: none; /* Hidden on desktop */
+            display: none; /* Hidden on desktop, shown on mobile */
             background: none;
             border: none;
             font-size: 1.8em;
@@ -92,13 +99,13 @@
             padding: 5px;
         }
 
-        /* Progress Bar - Increased Height */
+        /* Progress Bar (Reading Progress) */
         .progress-container {
             width: 100%;
             height: 10px; /* Made bigger */
             background: #ccc;
             position: sticky;
-            top: var(--navbar-height-desktop);  
+            top: var(--navbar-height-desktop); /* Stays below navbar */
             z-index: 990;
         }
 
@@ -109,12 +116,33 @@
             transition: background-color 0.5s ease-in-out;
         }
 
+        /* Countdown Timer Display */
+        .countdown-container {
+            text-align: center;
+            background-color: var(--apple-dark-gray);
+            color: white;
+            padding: 10px 0;
+            font-size: 1.1em;
+            font-weight: 600;
+            position: sticky;
+            top: calc(var(--navbar-height-desktop) + 10px); /* Below progress bar */
+            z-index: 980;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
+        }
+        /* Style for when the countdown is near zero */
+        .countdown-container.imminent {
+            background-color: #d9534f; /* Red */
+        }
+
+
+        /* "Next Article" Button Container */
         .next-button-container {
             text-align: center;
             padding: 20px 0;
             display: block;
             margin-top: 50px;
-            scroll-margin-top: 100px;
+            scroll-margin-top: 100px; /* Ensures element is not hidden by sticky header */
         }
 
         .next-button {
@@ -134,7 +162,7 @@
             background-color: var(--apple-dark-blue);
         }
 
-        /* Container & Sections */
+        /* Main Content Container & Sections */
         .container {
             max-width: 1000px;
             margin: 40px auto;
@@ -149,7 +177,7 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             position: relative;
-            scroll-margin-top: 80px; /* Offset for sticky header and progress bar */
+            scroll-margin-top: 120px; /* Offset for sticky header, progress bar, and countdown */
         }
 
         section:hover {
@@ -191,6 +219,7 @@
             margin-bottom: 8px;
         }
 
+        /* Highlight box for quotes/key info */
         .highlight-box {
             background: var(--liquid-glass-gradient);
             backdrop-filter: blur(10px);
@@ -206,6 +235,7 @@
             color: var(--apple-blue);
         }
 
+        /* Image Gallery (Placeholder, not used in this content) */
         .image-gallery {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -233,7 +263,7 @@
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
             text-align: center;
-            max-width: 728px;
+            max-width: 728px; /* Standard large banner width */
             overflow: hidden;
         }
         
@@ -275,7 +305,7 @@
             background: rgba(0, 0, 0, 0.6); /* Semi-transparent dark background */
             backdrop-filter: blur(5px); /* Frosted glass effect */
             z-index: 1000; /* Above everything else */
-            display: flex;
+            display: flex; /* For centering content */
             justify-content: center;
             align-items: center;
             opacity: 0;
@@ -349,7 +379,7 @@
             transform: translateY(-2px);
         }
 
-        /* Added for new content sections */
+        /* Hidden section for initially hidden content (AI sections) */
         .hidden-section {
             display: none;
         }
@@ -416,8 +446,15 @@
                 font-size: 1.4em;
             }
 
+            /* Adjust sticky positions for mobile */
             .progress-container {
                 top: var(--navbar-height-mobile);
+            }
+            .countdown-container {
+                top: calc(var(--navbar-height-mobile) + 10px);
+            }
+            section {
+                scroll-margin-top: 110px; /* Adjusted for smaller header on mobile */
             }
 
             .modal-content {
@@ -447,6 +484,7 @@
     </style>
 </head>
 <body>
+    <!-- Navigation Bar -->
     <nav class="navbar">
         <a href="#introduction" class="logo">WWDC 2025</a>
         <button class="menu-toggle" aria-label="Toggle navigation">
@@ -463,16 +501,24 @@
             <li><a href="#carplay-home">CarPlay والمنزل</a></li>
             <li><a href="#visionos-2">visionOS 2</a></li>
             <li><a href="#developer-tools">أدوات المطورين</a></li>
+            <!-- These AI links are initially hidden and revealed via JS -->
             <li class="ai-nav-link" style="display:none;"><a href="#google-pro-2-5">Google 2.5 Pro</a></li>
             <li class="ai-nav-link" style="display:none;"><a href="#deep-thinking-cleo">Deep Thinking Cleo</a></li>
             <li class="ai-nav-link" style="display:none;"><a href="#gpt-3-new-gen">GPT-3 (الجيل الجديد)</a></li>
         </ul>
     </nav>
 
+    <!-- Progress Bar (for Reading Progress) -->
     <div class="progress-container">
         <div class="progress-bar" id="progressBar"></div>
     </div>
     
+    <!-- Countdown Timer (for 2-minute wait) -->
+    <div class="countdown-container">
+        <span id="countdownTimer">الوقت المتبقي: 02:00</span>
+    </div>
+
+    <!-- Modal for Redirection Prompt -->
     <div class="modal-overlay" id="nextArticleModal">
         <div class="modal-content">
             <h3>رابطك جاهز!</h3>
@@ -485,6 +531,7 @@
     </div>
 
     <div class="container">
+        <!-- Introduction Section -->
         <section id="introduction">
             <h2>مقدمة: مؤتمر المطورين العالمي 2025</h2>
             <p>
@@ -501,11 +548,13 @@
             </p>
         </section>
 
+        <!-- Ad Slot 1 - Script type ad -->
         <center>
             <div class="ad-container ad-slot" data-ad-type="script" data-ad-src='//pl26896240.profitableratecpm.com/c5/54/ab/c554ab77178a32c9414a0f8b667e8383.js'>
-                </div>
+            </div>
         </center>
 
+        <!-- Apple Intelligence Section -->
         <section id="apple-intelligence">
             <h2>ذكاء Apple: تجربة شخصية وقوية</h2>
             <p>
@@ -542,11 +591,13 @@
             </div>
         </section>
 
+        <!-- Ad Slot 2 - Script type ad -->
         <center>
             <div class="ad-container ad-slot" data-ad-type="script" data-ad-src='//oilycoat.com/bgX.VYsZdcG/l/0yYuWdcO/ue/mQ9KulZIUQl/kDP/TPYk0vMxjsM/w/OCTecqtsNoj-QRy/MpzEAN5VOCAE'>
-                </div>
+            </div>
         </center>
 
+        <!-- Liquid Glass Section -->
         <section id="liquid-glass">
             <h2>Liquid Glass: لغة تصميم جديدة ومذهلة</h2>
             <p>
@@ -574,6 +625,7 @@
             </div>
         </section>
 
+        <!-- Ad Slot 3 - AdSense type ad -->
         <center>
             <div class="ad-container ad-slot" data-ad-type="adsense">
                 <ins class="adsbygoogle"
@@ -581,17 +633,16 @@
                     data-ad-client="ca-pub-5278045911736030"
                     data-ad-slot="5551234567" data-ad-format="auto"
                     data-full-width-responsive="true"></ins>
-                <script>
-                    // AdSense push command will be executed by the lazy load script
-                    // (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
+                <!-- AdSense push command will be executed by the lazy load script -->
             </div>
         </center>
+        <!-- Ad Slot 4 - iframe type ad -->
         <center>
             <div class="ad-container ad-slot" data-ad-type="iframe" data-ad-key="42765e1a18c314f57af048c82c4f035b" data-ad-width="300" data-ad-height="250">
-                </div>
+            </div>
         </center>
 
+        <!-- iOS 26 Section -->
         <section id="ios-26">
             <h2>iOS 26: شخصية، ذكية، وقوية</h2>
             <p>
@@ -621,11 +672,13 @@
             </ul>
         </section>
 
+        <!-- Ad Slot 5 - Script type ad -->
         <center>
             <div class="ad-container ad-slot" data-ad-type="script" data-ad-src='//oilycoat.com/byX.VGsPd_G_lo0pYcWccm/neqm/9/ueZ/UalNkoPqTxYp0/MCjHMcyJM_jCUDtuNejJQFysMKzGIqylNUgB'>
-                </div>
+            </div>
         </center>
 
+        <!-- iPadOS 26 Section -->
         <section id="ipados-26">
             <h2>iPadOS 26: نحو إنتاجية احترافية</h2>
             <p>
@@ -650,6 +703,7 @@
             </ul>
         </section>
 
+        <!-- Ad Slot 6 - AdSense type ad -->
         <center>
             <div class="ad-container ad-slot" data-ad-type="adsense">
                 <ins class="adsbygoogle"
@@ -657,16 +711,15 @@
                     data-ad-client="ca-pub-5278045911736030"
                     data-ad-slot="5551234568" data-ad-format="auto"
                     data-full-width-responsive="true"></ins>
-                <script>
-                    // (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
             </div>
         </center>
+        <!-- Ad Slot 7 - iframe type ad -->
         <center>
             <div class="ad-container ad-slot" data-ad-type="iframe" data-ad-key="42765e1a18c314f57af048c82c4f035b" data-ad-width="300" data-ad-height="250">
-                </div>
+            </div>
         </center>
 
+        <!-- macOS Tahoe 26 Section -->
         <section id="macos-tahoe-26">
             <h2>macOS Tahoe 26: استمرارية وذكاء معززان</h2>
             <p>
@@ -698,12 +751,14 @@
             </ul>
         </section>
 
+        <!-- Ad Slot 8 - Script type ad -->
         <center>
             <div class="ad-container ad-slot" data-ad-type="script" data-ad-src='//pl26896279.profitableratecpm.com/7d7b22532148f8fe8f7b68bbc12082a8/invoke.js'>
                 <div id="container-7d7b22532148f8fe8f7b68bbc12082a8"></div>
             </div>
         </center>
 
+        <!-- watchOS 26 Section -->
         <section id="watchos-26">
             <h2>watchOS 26: صحة وتخصيص أعمق</h2>
             <p>
@@ -728,6 +783,7 @@
             </ul>
         </section>
 
+        <!-- Ad Slot 9 - AdSense type ad -->
         <center>
             <div class="ad-container ad-slot" data-ad-type="adsense">
                 <ins class="adsbygoogle"
@@ -735,16 +791,15 @@
                     data-ad-client="ca-pub-5278045911736030"
                     data-ad-slot="5551234569" data-ad-format="auto"
                     data-full-width-responsive="true"></ins>
-                <script>
-                    // (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
             </div>
         </center>
+        <!-- Ad Slot 10 - iframe type ad -->
         <center>
             <div class="ad-container ad-slot" data-ad-type="iframe" data-ad-key="42765e1a18c314f57af048c82c4f035b" data-ad-width="300" data-ad-height="250">
-                </div>
+            </div>
         </center>
 
+        <!-- CarPlay & Home Section -->
         <section id="carplay-home">
             <h2>CarPlay والمنزل: اتصال أذكى</h2>
             <p>
@@ -765,20 +820,23 @@
             </ul>
         </section>
 
+        <!-- Ad Slot 11 - Script type ad -->
         <center>
             <div class="ad-container ad-slot" data-ad-type="script" data-ad-src='//oilycoat.com/byX.VGsPd_G_lo0pYcWccm/neqm/9/ueZ/UalNkoPqTxYp0/MCjHMcyJM_jCUDtuNejJQFysMKzGIqylNUgB'>
-                </div>
+            </div>
         </center>
 
+        <!-- visionOS 2 Section -->
         <section id="visionos-2">
             <h2>visionOS 2: توسيع حدود الحوسبة المكانية</h2>
             <p>
                 بالنسبة لـ Apple Vision Pro، يبني <strong>visionOS 2</strong> على أساسه الرائد، ويقدم طرقًا جديدة
                 للتفاعل مع المحتوى المكاني ويعزز التجربة الغامرة.
             </p>
+            <!-- Ad Slot 12 - iframe type ad -->
             <center>
                 <div class="ad-container ad-slot" data-ad-type="iframe" data-ad-key="42765e1a18c314f57af048c82c4f035b" data-ad-width="728" data-ad-height="90">
-                    </div>
+                </div>
             </center>
             <p style="margin-top: 15px;">
                 يمكن أن يظهر هنا إعلان مخصص للفيديو أو لافتة.
@@ -798,23 +856,14 @@
                     تثبيتها داخل بيئة المستخدم، مما يوفر تجارب أكثر ديناميكية وتفاعلية.</li>
             </ul>
         </section>
-        <script>
-(function(kzhwy){
-var d = document,
-    s = d.createElement('script'),
-    l = d.scripts[d.scripts.length - 1];
-s.settings = kzhwy || {};
-s.src = "\/\/vast-size.com\/cRD.9b6ebD2-5slcSJWUQt9cNzj-QcyIMBjIQH2\/Myi\/0C2\/NuDfIFyWNmDZYKzf";
-s.async = true;
-s.referrerPolicy = 'no-referrer-when-downgrade';
-l.parentNode.insertBefore(s, l);
-})({})
-</script>
-        <center>
-            <div class="ad-container ad-slot" data-ad-type="script" data-ad-src='//oilycoat.com/bNX.VusPdxGDlv0dY/Wbcd/he_mm9xumZOURl/kyPwT/Y/0/MJjOMLwWNOTDIhtFNOjEQryBMNz/Aw1/MywV'>
-                </div>
-        </center>
-<script type='text/javascript' src='//pl26896268.profitableratecpm.com/d2/0d/a8/d20da87afcf994fbf946e15bcb8fcd1f.js'></script>
+
+        <!-- External Ad Script (Encapsulated) -->
+        <div class="ad-container ad-slot" data-ad-type="script" data-ad-src='//vast-size.com/cRD.9b6ebD2-5slcSJWUQt9cNzj-QcyIMBjIQH2/Myi/0C2/NuDfIFyWNmDZYKzf'></div>
+        <div class="ad-container ad-slot" data-ad-type="script" data-ad-src='//oilycoat.com/bNX.VusPdxGDlv0dY/Wbcd/he_mm9xumZOURl/kyPwT/Y/0/MJjOMLwWNOTDIhtFNOjEQryBMNz/Aw1/MywV'></div>
+        <div class="ad-container ad-slot" data-ad-type="script" data-ad-src='//pl26896268.profitableratecpm.com/d2/0d/a8/d20da87afcf994fbf946e15bcb8fcd1f.js'></div>
+
+
+        <!-- Developer Tools Section -->
         <section id="developer-tools">
             <h2>أدوات المطورين: تمكين الابتكار</h2>
             <p>
@@ -832,10 +881,13 @@ l.parentNode.insertBefore(s, l);
             </ul>
         </section>
 
+        <!-- Hidden AI Sections (initially, revealed by "Next" button) -->
         <section id="google-pro-2-5" class="hidden-section">
             <h2>Google 2.5 Pro: الارتقاء بالذكاء التوليدي</h2>
-            <script async="async" data-cfasync="false" src="//pl26896279.profitableratecpm.com/7d7b22532148f8fe8f7b68bbc12082a8/invoke.js"></script>
-<div id="container-7d7b22532148f8fe8f7b68bbc12082a8"></div>
+            <!-- AdMaven script inside a slot -->
+            <div class="ad-container ad-slot" data-ad-type="script" data-ad-src="//pl26896279.profitableratecpm.com/7d7b22532148f8fe8f7b68bbc12082a8/invoke.js">
+                <div id="container-7d7b22532148f8fe8f7b68bbc12082a8-alt"></div>
+            </div>
             <p>
                 كجزء من التطور المستمر في عالم الذكاء الاصطناعي، تم الكشف عن <strong>Google 2.5 Pro</strong>، وهو يمثل خطوة كبيرة في قدرات النماذج اللغوية الكبيرة. يركز هذا التكرار على تعزيز فهم السياق، وتحسين توليد المحتوى في الوقت الفعلي، وتكامل أعمق مع خدمات Google عبر النظام البيئي.
             </p>
@@ -856,9 +908,6 @@ l.parentNode.insertBefore(s, l);
                         data-ad-client="ca-pub-5278045911736030"
                         data-ad-slot="5551234570" data-ad-format="auto"
                         data-full-width-responsive="true"></ins>
-                    <script>
-                        // (adsbygoogle = window.adsbygoogle || []).push({});
-                    </script>
                 </div>
             </center>
         </section>
@@ -880,7 +929,7 @@ l.parentNode.insertBefore(s, l);
             </div>
             <center>
                 <div class="ad-container ad-slot" data-ad-type="iframe" data-ad-key="42765e1a18c314f57af048c82c4f035b" data-ad-width="300" data-ad-height="250">
-                    </div>
+                </div>
             </center>
         </section>
 
@@ -890,7 +939,6 @@ l.parentNode.insertBefore(s, l);
                 تم الكشف عن جيل جديد من نموذج اللغة الرائد <strong>GPT-3</strong>، والذي يركز على تعزيز قوته مع توسيع نطاق وصوله إلى المطورين والشركات. يجمع هذا التحديث بين الأداء المحسن والكفاءة المحسنة، مما يجعله أداة أكثر سهولة وقوة لمجموعة واسعة من التطبيقات.
             </p>
             <h3>الميزات الرئيسية:</h3>
-            <script type='text/javascript' src='//pl26896240.profitableratecpm.com/c5/54/ab/c554ab77178a32c9414a0f8b667e8383.js'></script>
             <ul>
                 <li><strong>تحسين الأداء:</strong> يتميز الجيل الجديد من GPT-3 بقدرات توليد لغة أسرع وأكثر دقة، مما يقلل من التحيزات ويزيد من جودة المخرجات عبر المهام المختلفة.</li>
                 <li><strong>تحسينات API:</strong> تجعل واجهة برمجة التطبيقات (API) المعاد تصميمها أكثر سهولة في الاستخدام، مع وثائق أفضل وأمثلة تعليمات برمجية، مما يسهل على المطورين دمج قدرات GPT-3 في تطبيقاتهم.</li>
@@ -921,25 +969,97 @@ l.parentNode.insertBefore(s, l);
             const navbarLinks = document.getElementById('navbarLinks');
             const menuToggle = document.querySelector('.menu-toggle');
             const progressBar = document.getElementById('progressBar');
+            const countdownTimerDisplay = document.getElementById('countdownTimer');
+            const countdownContainer = document.querySelector('.countdown-container');
             const nextArticleModal = document.getElementById('nextArticleModal');
             const modalGoButton = document.getElementById('modalGoButton');
             const modalStayButton = document.getElementById('modalStayButton');
             const nextButton = document.getElementById('nextButton');
             const aiNavLinks = document.querySelectorAll('.ai-nav-link');
 
-            // Define the IDs of the new AI sections
+            // Define the IDs of the new AI sections that are initially hidden
             const aiSectionsIds = ['google-pro-2-5', 'deep-thinking-cleo', 'gpt-3-new-gen'];
             
             let revealedAiSectionsCount = 0; // Tracks how many AI sections have been revealed
-            let adsLoaded = false;
-            let interactionObserved = false; // Track if any user interaction occurred for lazy loading ads
+            let interactionObserved = false; // Track if any user interaction occurred for lazy loading non-AdSense ads
 
-            // Toggle Mobile Menu
+            // Target URL for redirection
+            const DESTINATION_URL = 'https://bot-sofai-4h.rf.gd/api/freefire/i.php';
+            // Delay for the modal prompt in seconds
+            const REDIRECT_DELAY_SECONDS = 120; // 2 minutes
+
+            let secondsRemaining = REDIRECT_DELAY_SECONDS;
+            let countdownInterval;
+            let redirectPromptTimeout;
+
+            /**
+             * Formats seconds into MM:SS string.
+             * @param {number} totalSeconds The total number of seconds.
+             * @returns {string} Formatted time string (e.g., "01:30").
+             */
+            function formatTime(totalSeconds) {
+                const minutes = Math.floor(totalSeconds / 60);
+                const seconds = totalSeconds % 60;
+                return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+            }
+
+            /**
+             * Initializes and starts the countdown timer.
+             * This timer will trigger the modal prompt after REDIRECT_DELAY_SECONDS.
+             */
+            function startCountdownTimer() {
+                // Initial display
+                countdownTimerDisplay.textContent = `الوقت المتبقي: ${formatTime(secondsRemaining)}`;
+
+                countdownInterval = setInterval(() => {
+                    secondsRemaining--;
+                    countdownTimerDisplay.textContent = `الوقت المتبقي: ${formatTime(secondsRemaining)}`;
+
+                    // Visually alert user when time is low (e.g., last 10 seconds)
+                    if (secondsRemaining <= 10 && secondsRemaining > 0) {
+                        countdownContainer.classList.add('imminent');
+                    } else if (secondsRemaining === 0) {
+                        countdownContainer.classList.remove('imminent');
+                        clearInterval(countdownInterval); // Stop the countdown
+                        showRedirectModal(); // Show the modal prompt
+                    }
+                }, 1000);
+            }
+
+            /**
+             * Displays the modal prompt for redirection.
+             */
+            function showRedirectModal() {
+                // Only show if the user hasn't already completed the article
+                // (i.e., if the "nextButton" hasn't already led to the final state)
+                if (revealedAiSectionsCount < aiSectionsIds.length || nextButton.textContent.includes('تابع القراءة')) {
+                    nextArticleModal.classList.add('show');
+                    document.querySelector('#nextArticleModal h3').textContent = 'هل ترغب في الانتقال؟';
+                    document.querySelector('#nextArticleModal p').textContent = `لقد أمضيت ${REDIRECT_DELAY_SECONDS / 60} دقائق على هذه الصفحة. هل ترغب في الانتقال إلى وجهتك الآن؟`;
+                    modalGoButton.textContent = 'نعم، انقلني الآن!';
+                    modalStayButton.textContent = 'لا، ابقَ هنا.';
+
+                    // Set action for "Go" button
+                    modalGoButton.onclick = function() {
+                        window.location.href = DESTINATION_URL;
+                    };
+                    // Set action for "Stay" button
+                    modalStayButton.onclick = function() {
+                        nextArticleModal.classList.remove('show');
+                        // Optionally, restart the timer or set a flag to prevent it from showing again soon
+                        // For simplicity, we won't restart; the modal only appears once per timed trigger.
+                    };
+                }
+            }
+
+
+            // Toggle Mobile Navigation Menu
             if (menuToggle && navbarLinks) {
                 menuToggle.addEventListener('click', function() {
                     navbarLinks.classList.toggle('active');
                 });
 
+                // Close menu when a link is clicked
                 navbarLinks.querySelectorAll('a').forEach(link => {
                     link.addEventListener('click', () => {
                         if (navbarLinks.classList.contains('active')) {
@@ -949,10 +1069,10 @@ l.parentNode.insertBefore(s, l);
                 });
             }
 
-            // Lazy Load Ads Function
-            function loadAds() {
-                if (adsLoaded) return;
-                const adSlots = document.querySelectorAll('.ad-slot');
+            // Lazy Load Ads Function (for script and iframe types, not AdSense core)
+            function loadOtherAds() {
+                if (interactionObserved) return; // Only load once per first interaction
+                const adSlots = document.querySelectorAll('.ad-slot:not([data-ad-type="adsense"])');
 
                 adSlots.forEach(adSlot => {
                     const adType = adSlot.dataset.adType;
@@ -963,6 +1083,8 @@ l.parentNode.insertBefore(s, l);
                             const script = document.createElement('script');
                             script.src = scriptSrc;
                             script.async = true;
+                            // Explicitly allow cross-origin for ad scripts if needed
+                            script.crossOrigin = 'anonymous'; 
                             script.referrerPolicy = 'no-referrer-when-downgrade';
                             adSlot.appendChild(script);
                         }
@@ -972,7 +1094,7 @@ l.parentNode.insertBefore(s, l);
                         const adHeight = adSlot.dataset.adHeight;
                         if (adKey) {
                             adSlot.innerHTML = ''; // Clear existing content before adding iframe
-                            // Check if this is a direct iframe source (e.g., AdMaven's raw iframe URL)
+                            // Check if this is a direct iframe source (e.g., a full URL)
                             if (adKey.includes('http://') || adKey.includes('https://')) {
                                 const iframe = document.createElement('iframe');
                                 iframe.src = adKey;
@@ -980,10 +1102,12 @@ l.parentNode.insertBefore(s, l);
                                 iframe.height = adHeight || 'auto';
                                 iframe.frameBorder = '0';
                                 iframe.allowFullscreen = true;
-                                iframe.sandbox = 'allow-scripts allow-same-origin allow-popups allow-forms'; // Recommended for iframe ads
+                                // Recommended sandbox attributes for iframe ads
+                                iframe.sandbox = 'allow-scripts allow-same-origin allow-popups allow-forms'; 
                                 adSlot.appendChild(iframe);
-                            } else { // Assume it's an AdMaven key for their script to dynamically inject iframe
-                                const iframeContainerId = `container-${adKey}-${Math.random().toString(36).substr(2, 9)}`; // Generate unique ID for container
+                            } else { 
+                                // Assume it's an AdMaven key for their script to dynamically inject iframe
+                                const iframeContainerId = `container-${adKey}-${Math.random().toString(36).substr(2, 9)}`; // Generate unique ID
                                 adSlot.innerHTML = `<div id="${iframeContainerId}"></div>`;
 
                                 const atOptionsScript = document.createElement('script');
@@ -996,33 +1120,34 @@ l.parentNode.insertBefore(s, l);
                                         'width' : ${adWidth},
                                         'params' : {}
                                     };
+                                    // Use the correct domain as seen in the original script
                                     document.getElementById('${iframeContainerId}').innerHTML = '<scr' + 'ipt type="text/javascript" src="//www.highperformanceformat.com/${adKey}/invoke.js"></scr' + 'ipt>';
                                 `;
                                 adSlot.appendChild(atOptionsScript);
                             }
                         }
-                    } else if (adType === 'adsense') {
-                        const insTag = adSlot.querySelector('.adsbygoogle');
-                        if (insTag) {
-                            (window.adsbygoogle = window.adsbygoogle || []).push({});
-                        }
                     }
                 });
-                adsLoaded = true;
-                console.log("Ads loaded.");
+                interactionObserved = true;
+                // Remove listeners once ads are loaded
+                interactionEvents.forEach(event => window.removeEventListener(event, handleFirstInteraction));
             }
 
             // Trigger ad loading on first user interaction (scroll, mousemove, keydown, click, touchstart)
             const interactionEvents = ['scroll', 'mousemove', 'keydown', 'click', 'touchstart'];
             function handleFirstInteraction() {
-                if (!interactionObserved) {
-                    loadAds();
-                    interactionObserved = true;
-                    interactionEvents.forEach(event => window.removeEventListener(event, handleFirstInteraction));
-                }
+                loadOtherAds(); // Load non-AdSense ads on first interaction
             }
             interactionEvents.forEach(event => window.addEventListener(event, handleFirstInteraction, { once: true }));
 
+            // Load AdSense ads immediately on DOMContentLoaded (as per Google's primary recommendation)
+            const adsenseAdSlots = document.querySelectorAll('.ad-slot[data-ad-type="adsense"]');
+            adsenseAdSlots.forEach(adSlot => {
+                const insTag = adSlot.querySelector('.adsbygoogle');
+                if (insTag) {
+                    (window.adsbygoogle = window.adsbygoogle || []).push({});
+                }
+            });
 
             // Hide all AI sections and their nav links on load
             aiSectionsIds.forEach(id => {
@@ -1032,11 +1157,9 @@ l.parentNode.insertBefore(s, l);
             aiNavLinks.forEach(link => link.style.display = 'none');
 
 
-            // Progress Bar Update
+            // Progress Bar Update (for reading progress)
             function updateProgressBar() {
-                // Total scrollable height of the document
                 const fullHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-                // How far the user has scrolled from the top
                 const scrolledDistance = document.documentElement.scrollTop;
 
                 let scrollPercentage = 0;
@@ -1048,6 +1171,7 @@ l.parentNode.insertBefore(s, l);
 
                 // Change progress bar color based on overall completion
                 // It turns green only when all AI sections are revealed AND the user has scrolled to the end of the total content
+                // Or if the final modal has been triggered for redirection.
                 if (scrollPercentage >= 99 && revealedAiSectionsCount === aiSectionsIds.length) {
                     progressBar.style.backgroundColor = 'green';
                 } else {
@@ -1077,9 +1201,11 @@ l.parentNode.insertBefore(s, l);
                     // Update button text to give feedback on remaining AI sections
                     if (revealedAiSectionsCount === aiSectionsIds.length) {
                         nextButton.textContent = 'أنهيت المقال! احصل على هديتك!';
-                        // Immediately set progress bar to green if all sections are now revealed
-                        // This anticipates the user will scroll to the end
-                        progressBar.style.backgroundColor = 'green'; 
+                        // Immediately clear the timed redirect if all sections are now revealed
+                        clearInterval(countdownInterval); 
+                        clearTimeout(redirectPromptTimeout);
+                        countdownContainer.style.display = 'none'; // Hide the countdown timer
+                        progressBar.style.backgroundColor = 'green'; // Indicate completion
                     } else {
                         nextButton.textContent = `تابع القراءة: اكتشف (${revealedAiSectionsCount} من ${aiSectionsIds.length}) من ابتكارات الذكاء الاصطناعي`;
                     }
@@ -1091,19 +1217,23 @@ l.parentNode.insertBefore(s, l);
                     modalGoButton.textContent = 'اذهب للرابط الخاص بك!';
                     // Change the "Go" button's action to the final winning link
                     modalGoButton.onclick = function() {
-                        window.location.href = 'https://bot-sofai-4h.rf.gd/api/freefire/i.php';
+                        window.location.href = DESTINATION_URL;
                     };
                     modalStayButton.textContent = 'ابقى في المقال';
+                    // Clear any lingering timed redirect or countdown
+                    clearInterval(countdownInterval);
+                    clearTimeout(redirectPromptTimeout);
+                    countdownContainer.style.display = 'none';
                 }
             });
 
-            // Modal Stay button logic (closes the modal without navigating)
+            // Modal "Stay" button logic (closes the modal without navigating)
             modalStayButton.addEventListener('click', function() {
                 nextArticleModal.classList.remove('show');
             });
 
-            // Dynamic adjustment of progress bar top based on navbar height for sticky positioning
-            function adjustProgressBarTop() {
+            // Dynamic adjustment of sticky header/progress bar top based on navbar height
+            function adjustStickyElementsTop() {
                 const navbar = document.querySelector('.navbar');
                 if (navbar) {
                     const navbarHeight = navbar.offsetHeight;
@@ -1112,8 +1242,11 @@ l.parentNode.insertBefore(s, l);
                 }
             }
             
-            adjustProgressBarTop();
-            window.addEventListener('resize', adjustProgressBarTop); // Adjust on window resize
+            adjustStickyElementsTop();
+            window.addEventListener('resize', adjustStickyElementsTop); // Adjust on window resize
+
+            // Start the countdown timer when the page loads
+            startCountdownTimer();
         });
     </script>
 </body>
